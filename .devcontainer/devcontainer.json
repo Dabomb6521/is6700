@@ -7,7 +7,10 @@
         "vscode": {
             "extensions": [
                 "dbaeumer.vscode-eslint",
-                "esbenp.prettier-vscode"
+                "esbenp.prettier-vscode",
+                "albert.tabout",
+                "oderwat.indent-rainbow",
+                "daiyy.quick-html-previewer"
             ]
         }
     }

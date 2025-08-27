@@ -13,7 +13,7 @@ This repo contains devcontainer for the ability to develop in any enviroment the
 
 When ready to run the devcontainer, navigate to repo location and run `code .`
 
-It will open vscode click the button <button style= "background-color: #24AFF2; font-family: consolas">Open in devcontainer</button>
+It will open vscode click the button <button style= "background-color: #24AFF2; font-family: consolas">Reopen in Container</button>
 
 Or optionally press (`Ctrl+Shift+P`) then type `Dev Containers: Reopen in Container`
 

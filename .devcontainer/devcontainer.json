@@ -10,7 +10,9 @@
                 "esbenp.prettier-vscode",
                 "albert.tabout",
                 "oderwat.indent-rainbow",
-                "daiyy.quick-html-previewer"
+                "daiyy.quick-html-previewer",
+                "davidanson.vscode-markdownlint",
+                "eamodio.gitlens"
             ]
         }
     }

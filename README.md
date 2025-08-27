@@ -17,4 +17,6 @@ It will open vscode click the button <button style= "background-color: #24AFF2; 
 
 Or optionally press (`Ctrl+Shift+P`) then type `Dev Containers: Reopen in Container`
 
+    Note: You may need to rebuild the devcontainer if there were changes to the devcontainer.json since last open
+
 This will then open the devcontainer 🥳

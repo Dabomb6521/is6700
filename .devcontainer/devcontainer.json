@@ -1,0 +1,14 @@
+{
+    "name": "IS6700 - Fall2025",
+    "image": "node:22-alpine",
+    "postCreateCommand": "corepack enable && npm install || npm install",
+    "forwardPorts": [3000],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    }
+}

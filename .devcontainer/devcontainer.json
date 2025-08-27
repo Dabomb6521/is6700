@@ -1,7 +1,7 @@
 {
     "name": "IS6700 - Fall2025",
-    "image": "node:22-alpine",
-    "postCreateCommand": "corepack enable && npm install || npm install",
+    "image": "node:22-bookworm",
+    "postCreateCommand": "corepack enable",
     "forwardPorts": [3000],
     "customizations": {
         "vscode": {

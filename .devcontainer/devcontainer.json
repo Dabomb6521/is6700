@@ -12,7 +12,8 @@
                 "oderwat.indent-rainbow",
                 "daiyy.quick-html-previewer",
                 "davidanson.vscode-markdownlint",
-                "eamodio.gitlens"
+                "eamodio.gitlens",
+                "pkief.material-icon-theme"
             ]
         }
     }

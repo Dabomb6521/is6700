@@ -21,6 +21,15 @@ const getAbout = ((req, res, next) => {
     next();
 });
 
+const authUser = (req, res, next) => {
+    let goodUser = false;
+    if (goodUser) {
+        next();
+    } else {
+        res.send("You are not authorized to view this resource.")
+    }
+}
+
 
 // Register routes
 
@@ -29,6 +38,7 @@ app.get("/", getHome);
 
 // About us page (/about)
 // app.get("/about", getAbout);
+app.use(authUser);
 app.get("/about", getAbout, (req, res) => {
     res.send("<h1>THIS IS THE SECRET ABOUT PAGE!</h1>")
 });

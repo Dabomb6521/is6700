@@ -31,6 +31,7 @@ router.get('/add-user', (req, res, next) => {
   res.render('add-user', {
     pageTitle: 'Add User',
     path: '/admin/add-user',
+    // Reusing form and product css for ease
     formsCSS: true,
     productCSS: true,
     activeAddUser: true

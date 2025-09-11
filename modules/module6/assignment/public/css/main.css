@@ -15,6 +15,13 @@ main {
   margin: auto;
 }
 
+h1 {
+  text-align: center;
+}
+h2 {
+  text-align: center;
+}
+
 .main-header {
   width: 100%;
   height: 3.5rem;
@@ -105,4 +112,20 @@ main {
 .btn:active {
   background-color: #00695c;
   color: white;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.user-name {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
 }

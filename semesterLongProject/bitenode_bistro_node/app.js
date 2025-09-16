@@ -4,6 +4,9 @@ const ejs = require('ejs');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 
+// Import temp menu data
+const menu = require('./data/menu.json');
+
 // Initialize the express app
 const app = express();
 
@@ -21,12 +24,32 @@ app.use(expressLayouts);
 
 // Register Routes
 app.get("/", (req, res) => {
-    res.render('index.ejs');
+    res.render('index.ejs', {title: "Home"});
 });
 
 app.get("/about", (req, res) => {
-    res.render('about.ejs')
-})
+    res.render('about.ejs', {title: "About Us"})
+});
+
+app.get("/menu", (req, res) => {
+    res.render('menu', {title: "Menu", data: menu});
+});
+
+app.get("/team", (req, res) => {
+    res.render('team', {title: "Our Team"});
+});
+
+app.get("/testimonials", (req, res) => {
+    res.render('testimonials', {title: "Testimonials"});
+});
+
+app.get("/contact", (req, res) => {
+    res.render('contact', {title: "Contact"});
+});
+
+app.get("/booking", (req, res) => {
+    res.render('booking', {title: "Booking"});
+});
 
 // Launch my express app
 app.listen(3000);

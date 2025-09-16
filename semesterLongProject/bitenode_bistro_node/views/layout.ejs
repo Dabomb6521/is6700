@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>BiteNode Bistro</title>
+    <title>BiteNode Bistro - <%= title %></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -57,12 +57,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="/" class="nav-item nav-link active">Home</a>
-                        <a href="menu.html" class="nav-item nav-link">Menu</a>
-                        <a href="/about" class="nav-item nav-link">About</a>
-                        <a href="team.html" class="nav-item nav-link">Our Team</a>
-                        <a href="testimonial.html" class="nav-item nav-link">Testimonials</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="/" class="nav-item nav-link <%= title === 'Home' ? 'active' : '' %>">Home</a>
+                        <a href="/menu" class="nav-item nav-link <%= title === 'Menu' ? 'active' : '' %>">Menu</a>
+                        <a href="/about" class="nav-item nav-link <%= title === 'About Us' ? 'active' : '' %>">About</a>
+                        <a href="/team" class="nav-item nav-link <%= title === 'Our Team' ? 'active' : '' %>">Our Team</a>
+                        <a href="/testimonials" class="nav-item nav-link <%= title === 'Testimonials' ? 'active' : '' %>">Testimonials</a>
+                        <a href="/contact" class="nav-item nav-link <%= title === 'Contact' ? 'active' : '' %>">Contact</a>
                         <!-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
@@ -72,7 +72,7 @@
                             </div>
                         </div> -->
                     </div>
-                    <a href="booking.html" class="btn btn-primary py-2 px-4">Book A Table</a>
+                    <a href="/booking" class="btn btn-primary py-2 px-4">Book A Table</a>
                 </div>
             </nav>
         </div>

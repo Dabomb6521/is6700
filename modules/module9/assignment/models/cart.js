@@ -5,7 +5,7 @@ const p = path.join(path.dirname(require.main.filename), "data", "cart.json");
 
 module.exports = class Cart {
     static addProduct(id, productPrice) {
-        // Fetch the privious cart
+        // Fetch the previous cart
         fs.readFile(p, (err, fileContent) => {
             let cart = { products: [], totalPrice: 0 };
             if (!err) {
@@ -13,7 +13,7 @@ module.exports = class Cart {
             }
             // Analyze the cart => Find existing product
             const existingProductIndex = cart.products.findIndex(
-                (prod) => prod.id === id
+                prod => prod.id === id
             );
             const existingProduct = cart.products[existingProductIndex];
             let updatedProduct;
@@ -28,7 +28,7 @@ module.exports = class Cart {
                 cart.products = [...cart.products, updatedProduct];
             }
             cart.totalPrice = cart.totalPrice + +productPrice;
-            fs.writeFile(p, JSON.stringify(cart), (err) => {
+            fs.writeFile(p, JSON.stringify(cart), err => {
                 console.log(err);
             });
         });
@@ -40,21 +40,33 @@ module.exports = class Cart {
                 return;
             }
             const updatedCart = { ...JSON.parse(fileContent) };
-            const productIndex = updatedCart.products.findIndex(
-                (prod) => prod.id === id
+            const product = updatedCart.products.find(
+                prod => prod.id === id
             );
-            const productQty = productIndex.qty;
+            if (!product) {
+                return;
+            }
+            const productQty = product.qty;
             updatedCart.products = updatedCart.products.filter(
                 (prod) => prod.id !== id
             );
             updatedCart.totalPrice =
-                updatedCart.totalPrice =
-                productPrice =
-                productQty;
+                updatedCart.totalPrice - productPrice * productQty;
 
-            fs.writeFile(p, JSON.stringify(updatedCart), (err) => {
+            fs.writeFile(p, JSON.stringify(updatedCart), err => {
                 console.log(err);
             });
+        });
+    }
+
+    static getCart(cb) {
+        fs.readFile(p, (err, fileContent) =>{
+            const cart = JSON.parse(fileContent);
+            if (err) {
+                cb(null);
+            } else {
+                cb(cart);
+            }
         });
     }
 };

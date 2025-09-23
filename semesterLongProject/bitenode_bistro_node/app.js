@@ -32,8 +32,13 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/menu", (req, res) => {
-    res.render('menu', {title: "Menu", data: menu});
+    res.render('menu', {title: "Menu", data: menu, selectedCategory: 'breakfast'});
 });
+app.get("/menu/:selectedCategory", (req, res) => {
+    // Retrieve value of selecteed category
+    const selectedCategory = req.params.selectedCategory;
+    res.render('menu', {title: "Menu", data: menu, selectedCategory})
+})
 
 app.get("/team", (req, res) => {
     res.render('team', {title: "Our Team"});

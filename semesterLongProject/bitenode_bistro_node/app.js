@@ -4,8 +4,15 @@ const ejs = require('ejs');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 
+// Import Controllers
+const menuController = require('./controllers/menu-controller');
+
 // Import temp menu data
 const menu = require('./data/menu.json');
+
+// Import menu model
+const menuModel = require('./models/menu-model');
+const { nextTick } = require('process');
 
 // Initialize the express app
 const app = express();
@@ -31,14 +38,9 @@ app.get("/about", (req, res) => {
     res.render('about.ejs', {title: "About Us"})
 });
 
-app.get("/menu", (req, res) => {
-    res.render('menu', {title: "Menu", data: menu, selectedCategory: 'breakfast'});
-});
-app.get("/menu/:selectedCategory", (req, res) => {
-    // Retrieve value of selecteed category
-    const selectedCategory = req.params.selectedCategory;
-    res.render('menu', {title: "Menu", data: menu, selectedCategory})
-})
+app.get(["/menu", "/menu/:selectedCategory"], menuController.getMenu);
+// instead of defining in two seperate app.get you can pass an array with the paths
+// app.get("/menu/:selectedCategory", menuController.getMenu);
 
 app.get("/team", (req, res) => {
     res.render('team', {title: "Our Team"});
@@ -55,6 +57,12 @@ app.get("/contact", (req, res) => {
 app.get("/booking", (req, res) => {
     res.render('booking', {title: "Booking"});
 });
+
+// Handle all unrecognized requests
+app.use((req, res) => {
+    // Render a 404 page
+    res.render("404", {title: "Page not found"})
+})
 
 // Launch my express app
 app.listen(3000);

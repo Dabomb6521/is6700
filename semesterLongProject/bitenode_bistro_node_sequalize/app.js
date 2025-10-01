@@ -12,7 +12,8 @@ const menu = require('./data/menu.json');
 
 // Import menu model
 const menuModel = require('./models/menu-model');
-const { nextTick } = require('process');
+// const { nextTick } = require('process');
+const Contact = require('./models/contact-model')
 
 // Initialize the express app
 const app = express();
@@ -22,6 +23,9 @@ app.set('view engine', 'ejs'); // What templating engine should be used
 app.set('views', 'views'); // Where should app find views
 
 //  Mount middleware
+
+// Mount express middleware to parse requrest bodies
+app.use(express.urlencoded({extended: false}));
 
 // Tell the app where to find static resources
 app.use(express.static(path.join(__dirname, 'public')));
@@ -51,7 +55,27 @@ app.get("/testimonials", (req, res) => {
 });
 
 app.get("/contact", (req, res) => {
-    res.render('contact', {title: "Contact"});
+    res.render('contact', {title: "Contact", message: ""});
+});
+app.post("/contact", (req, res) => {
+    // Retrieve the requrest body
+    console.log("Request body is: ", req.body);
+
+    // Import
+    Contact.create({
+        name: req.body.name,
+        email: req.body.email,
+        subject: req.body.subject,
+        message: req.body.message
+    })
+    .then((response) => {
+        console.log("Success!", response);
+        res.render("contact", {title: "Contact", message: "Thanks! Your request has been submitted."})
+    })
+    .catch((err) => {
+        console.error(err);
+        res.render("contact", {title: "Contact", message: "Oops, something went wrong. Please try again later."})
+    })
 });
 
 app.get("/booking", (req, res) => {

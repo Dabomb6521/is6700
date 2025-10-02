@@ -1,0 +1,52 @@
+[
+{
+    "title": "Book",
+    "price": "15.99",
+    "imageUrl": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/d\/da\/Pieni2.jpg\/1200px-Pieni2.jpg",
+    "description": "This is a great book"
+},
+{
+    "title": "Computer",
+    "price": "299.99",
+    "imageUrl": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/b\/b7\/Lenovo_G500s_laptop-2903.jpg\/640px-Lenovo_G500s_laptop-2903.jpg",
+    "description": "A really fast laptop computer"
+},
+{
+    "title": "Blender",
+    "price": "29.99",
+    "imageUrl": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/c\/c7\/Blender_%2849907001146%29.jpg\/640px-Blender_%2849907001146%29.jpg",
+    "description": "This blender will chop up any food you put in it!"
+},
+{
+    "title": "Phone",
+    "price": "399.99",
+    "imageUrl": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/c\/ca\/IPhone_4_-_Twitter.jpg\/640px-IPhone_4_-_Twitter.jpg",
+    "description": "The latest iPhone model"
+},
+{
+    "title": "Calculator",
+    "price": "45.99",
+    "imageUrl": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/c\/cf\/Casio_calculator_JS-20WK_in_201901_002.jpg\/640px-Casio_calculator_JS-20WK_in_201901_002.jpg",
+    "description": "Perform all sorts of cool math functions!"
+},
+{
+
+    "title": "Tablet",
+    "price": "199.99",
+    "imageUrl": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/4\/42\/Lenovo-X61-Tablet-Mode.jpg\/640px-Lenovo-X61-Tablet-Mode.jpg",
+    "description": "Handle your computing needs on the go."
+},
+{
+    "title": "Toaster",
+    "price": "19.99",
+    "imageUrl": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/8\/8f\/Toaster.jpg\/640px-Toaster.jpg",
+    "description": "This toaster will make your morning."
+},
+{
+    "title": "Microwave Oven",
+    "price": "179.99",
+    "imageUrl": "https:\/\/upload.wikimedia.org\/wikipedia\/commons\/thumb\/1\/12\/Microwave_oven_flashon.jpg\/640px-Microwave_oven_flashon.jpg",
+    "description": "Warm your food with the touch of a button!"
+}
+]
+

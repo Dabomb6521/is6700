@@ -1,6 +1,10 @@
 const Product = require('../models/product');
 const Cart = require('../models/cart');
 
+// Import data import file for Extra query practice
+const bulkProductsData = require('../data/bulk-add-products.json');
+const { Op } = require('sequelize');
+
 exports.getProducts = (req, res, next) => {
   Product.findAll()
   .then(products => {
@@ -100,4 +104,103 @@ exports.getCheckout = (req, res, next) => {
     path: '/checkout',
     pageTitle: 'Checkout'
   });
+};
+
+// Extra query practice requirements
+
+exports.queryPractice = (req, res, next) => {
+  res.render('shop/query-practice', {
+    path: '/query-practice',
+    pageTitle: 'Extra Practice'
+  });
+};
+
+exports.getBulkAdd = (req, res, next) => {
+  Product.bulkCreate(bulkProductsData)
+  .then(result => {
+    console.log('Created Product');
+    res.redirect('/products');
+  })
+  .catch(err => {
+    console.log(err);
+  });
+};
+exports.getStartWithC = (req, res, next) => {
+  Product.findAll({
+    where: {
+      title: {
+        [Op.startsWith]: 'C'
+      }
+    }
+  })
+  .then(products => {
+    res.render('shop/product-list', {
+      path: '/products',
+      pageTitle: 'Starts With C',
+      prods: products
+    })
+  })
+  .catch(err => console.log(err));
+};
+exports.getProductBetween = (req, res, next) => {
+  Product.findAll({
+    where: {
+      price: {
+        [Op.between]: [100, 200]
+      }
+    }
+  })
+  .then(products => {
+    res.render('shop/product-list', {
+      path: '/products',
+      pageTitle: 'Price Between $100 and $200',
+      prods: products
+    })
+  })
+  .catch(err => console.log(err));
+};
+exports.getContainsYour = (req, res, next) => {
+  Product.findAll({
+    where: {
+      description: {
+        [Op.substring]: 'your'
+      }
+    }
+  })
+  .then(products => {
+    res.render('shop/product-list', {
+      path: '/products',
+      pageTitle: 'Price Between $100 and $200',
+      prods: products
+    })
+  })
+  .catch(err => console.log(err));
+};
+exports.getBlenderPriceIncrease = (req, res, next) => {
+  Product.findOne({
+    where: {
+      title: 'Blender'
+    }
+  })
+  .then(product => {
+    product.price += 10;
+    return product.save()
+  })
+  .then(result => {
+    console.log("Blender Price increased");
+    res.redirect('/products')
+  })
+  .catch(err => console.log(err));
+};
+exports.getDeleteAllProducts = (req, res, next) => {
+  Product.destroy({
+    truncate: true
+  })
+  .then(result => {
+      console.log('Destroyed Product');
+      res.redirect('/products');
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };

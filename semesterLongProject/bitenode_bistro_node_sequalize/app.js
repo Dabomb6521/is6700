@@ -15,6 +15,9 @@ const menuModel = require('./models/menu-model');
 // const { nextTick } = require('process');
 const Contact = require('./models/contact-model')
 
+// Import model config
+const {configModels} = require('./util/model-config');
+
 // Initialize the express app
 const app = express();
 
@@ -32,6 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Tell the app to use the expressLayouts package
 app.use(expressLayouts);
+
+// Configure Model Relationships
+configModels();
 
 // Register Routes
 app.get("/", (req, res) => {

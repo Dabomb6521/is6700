@@ -48,6 +48,7 @@
                             categoryItems.forEach((item)=> { %>
 
                                 <div class="col-lg-6">
+                                    <a href="/menu/<%= category.name.toLowerCase() %>>/<%= item.id %>">
                                     <div class="d-flex align-items-center">
                                         <img class="flex-shrink-0 img-fluid rounded" src="/img/menu/<%= item.image %>"
                                             alt="" style="width: 80px" />
@@ -63,6 +64,7 @@
                                             </small>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                                 <% }) %>
                         </div>

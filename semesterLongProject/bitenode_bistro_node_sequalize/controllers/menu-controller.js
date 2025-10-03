@@ -1,6 +1,8 @@
 // Handler functions that pertainer to the menu
 
-const menuModel = require('../models/menu-model.js');
+// const menuModel = require('../models/menu-model.js');
+const MenuCategory = require('../models/menu-category-model');
+const MenuItem = require('../models/menu-item-model');
 
 exports.getMenu = (req, res, next) => {
 
@@ -8,8 +10,8 @@ exports.getMenu = (req, res, next) => {
 
     let categories, items;
     // Retrieve the menu category data
-    menuModel.fetchAllCategories()
-    .then(([catData]) => {
+    MenuCategory.findAll()
+    .then((catData) => {
         
         categories = catData
 
@@ -17,11 +19,12 @@ exports.getMenu = (req, res, next) => {
             return next ();
         }
         // Retrieve the menu item data
-        return menuModel.fetchAllMenuItems();
+        return MenuItem.findAll();
     })
     .then((results) => {
-        if (result) {
-            items = results[0]
+        if (results) {
+            items = results;
+            console.log("Items are: ", items)
             // Render the view
             res.render('menu', {title: "Menu", categories, items, selectedCategory: selectedCategory || "breakfast"});
         }
@@ -30,4 +33,8 @@ exports.getMenu = (req, res, next) => {
     .catch((err) => {
         console.error(err);
     })
+}
+
+exports.getMenuItem = (req, res, next) => {
+
 }

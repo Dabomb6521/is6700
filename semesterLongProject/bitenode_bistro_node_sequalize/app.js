@@ -52,6 +52,8 @@ app.get(["/menu", "/menu/:selectedCategory"], menuController.getMenu);
 // instead of defining in two seperate app.get you can pass an array with the paths
 // app.get("/menu/:selectedCategory", menuController.getMenu);
 
+app.get('/menu/:selectedCategory/:itemId', menuController.getMenuItem);
+
 app.get("/team", (req, res) => {
     res.render('team', {title: "Our Team"});
 });

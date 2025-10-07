@@ -36,5 +36,14 @@ exports.getMenu = (req, res, next) => {
 }
 
 exports.getMenuItem = (req, res, next) => {
-
+ const { itemId, selectedCategory} = req.params;
+ MenuItem.findByPk(itemId)
+ .then((item) => {
+    if (!item) {
+        return next();
+    } else {
+        res.render('menu-item', { title: 'Menu Item', selectedCategory, item});
+    }
+ })
+ .catch(err => console.log(err));
 }

@@ -1,12 +1,12 @@
         <!-- Hero Start -->
         <div class="container-xxl py-5 bg-dark hero-header mb-5">
             <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">Chicken Burger</h1>
+                <h1 class="display-3 text-white mb-3 animated slideInDown"><%= item.name %></h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="menu.html">Menu</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Chicken Burger</li>
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/menu/<%= selectedCategory.toLowerCase() %>">Menu</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page"><%= item.name %></li>
                     </ol>
                 </nav>
             </div>
@@ -17,13 +17,13 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6">
-                    <img src="img/hero.png" class="img-fluid rounded" alt="Chicken Burger">
+                    <img src="/img/menu/<%= item.image %>" class="img-fluid rounded" alt="<%= item.name %>">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="mb-4">Chicken Burger</h1>
-                    <h3 class="text-primary">$25</h3>
-                    <p class="mt-3">A juicy grilled chicken patty topped with fresh lettuce, tomatoes, and creamy mayo on a toasted bun.</p>
-                    <a href="menu.html" class="btn btn-primary mt-3">Back to Menu</a>
+                    <h1 class="mb-4"><%= item.name %></h1>
+                    <h3 class="text-primary">$<%= item.price %></h3>
+                    <p class="mt-3"><%= item.description %></p>
+                    <a href="/menu/<%= selectedCategory.toLowerCase() %>" class="btn btn-primary mt-3">Back to Menu</a>
                 </div>
             </div>
         </div>

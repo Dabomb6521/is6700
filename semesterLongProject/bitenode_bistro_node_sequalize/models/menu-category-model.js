@@ -1,6 +1,9 @@
 // Import DataTypes object from sequelize package
 const {DataTypes} = require('sequelize');
 
+// Import slugify
+const slugify = require('slugify');
+
 // Import configured sequelize instance
 const sequelize = require('../util/database');
 
@@ -15,7 +18,14 @@ const MenuCategory = sequelize.define('menuCategory', {
     },
     name: {
         type: DataTypes.STRING,
-        allowNull: false       
+        allowNull: false,
+        set(value) {
+            // Set the passed value as the name (default behavior)
+            this.setDataValue("name", value);
+
+            // Set the slug field to the "slugified" version of the name
+            this.setDataValue("slug", slugify(value, {lower: true, trim: true}));
+        }
     },
     adjective: {
         type: DataTypes.STRING,
@@ -24,6 +34,10 @@ const MenuCategory = sequelize.define('menuCategory', {
     icon: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    slug: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     // Custom options

@@ -23,7 +23,7 @@
             <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                 <% categories.forEach((category, index)=> { %>
                     <li class="nav-item">
-                        <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 <%= category.name.toLowerCase() === selectedCategory ? 'active' : '' %>"
+                        <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 <%= category.slug === catSlug ? 'active' : '' %>"
                             data-bs-toggle="pill" href="#tab-<%= index + 1 %>">
                             <i class="fa <%= category.icon%> fa-2x text-primary"></i>
                             <div class="ps-3">
@@ -41,14 +41,14 @@
             <div class="tab-content">
                 <% categories.forEach((category, index)=> { %>
                     <div id="tab-<%= index +1 %>"
-                        class="tab-pane fade show p-0 <%= category.name.toLowerCase() === selectedCategory ? 'active' : '' %>">
+                        class="tab-pane fade show p-0 <%= category.slug === catSlug ? 'active' : '' %>">
                         <div class="row g-4">
                             <!-- use filter to grab items -->
                             <% let categoryItems = items.filter(item => item.cat_id === category.id)
                             categoryItems.forEach((item)=> { %>
 
                                 <div class="col-lg-6">
-                                    <a href="/menu/<%= category.name.toLowerCase() %>/<%= item.id %>">
+                                    <a href="/menu/<%= category.slug %>/<%= item.slug %>">
                                     <div class="d-flex align-items-center">
                                         <img class="flex-shrink-0 img-fluid rounded" src="/img/menu/<%= item.image %>"
                                             alt="" style="width: 80px" />

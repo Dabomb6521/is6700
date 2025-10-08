@@ -17,7 +17,7 @@ const itemData = require('./menu_items.json');
 configModels()
 
 // Sync all models to the database
-sequelize.sync({force: false})
+sequelize.sync({force: true})
 .then((result) => {
     console.log("Sucess!", result);
     // Bulk insert into the categories table

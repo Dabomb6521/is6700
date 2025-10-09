@@ -9,13 +9,13 @@ const myFriends = [
   {
     firstName: "Dallin",
     lastName: "Southwick",
-    birthDate: 02-14-1994,
+    birthDate: new Date(1994, 2, 14),
     favoriteFoods: ["pasta", "salad", "potatos"]
   },
   {
     firstName: "Stetzon",
     lastName: "Blacker",
-    birthDate: 03/8/1993,
+    birthDate: new Date(1993, 3, 8),
     favoriteFoods: ["pasta", "salad", "potatos"]
   }
 ]

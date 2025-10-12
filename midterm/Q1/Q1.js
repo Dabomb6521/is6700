@@ -29,15 +29,14 @@ function getFriendsInfo(friends) {
   });
 };
 
-function olderThan(friends) {
-  olderThan = new Date(1993, 0, 9);
-  
-  friends.filter(friend => {
-    if (friend.birthDate < olderThan) {
-      console.log(`${friend.firstName} ${friend.lastName} is older than ${olderThan.toLocaleString('en-US', {month: 'long'})} ${olderThan.getDate()}, ${olderThan.getFullYear()}`);
-    }
-  });
-};
+function olderThan(date, friends) {
+  return friends.filter(friend => friend.birthDate < date);
+}
 
+console.log("Friends Age and favorite foods:")
 getFriendsInfo(myFriends);
-olderThan(myFriends);
+
+console.log("\nArray of friends that are older than a date: ")
+
+const olderFriends = olderThan(new Date(1993, 0, 9), myFriends);
+console.log(olderFriends);

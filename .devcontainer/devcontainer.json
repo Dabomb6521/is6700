@@ -1,6 +1,8 @@
 {
     "name": "IS6700 - Fall2025",
     "image": "node:22-bookworm",
+    "remoteUser": "node",
+    "updateRemoteUserUID": true,
     "postCreateCommand": "corepack enable",
     "forwardPorts": [3000],
     "customizations": {

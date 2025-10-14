@@ -1,11 +1,13 @@
 const express = require('express');
 const ejs = require('ejs');
-const path = requrie('path');
+const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const port = 3000;
 
 // Import Routes
-const homeRoutes = require('./controllers/home-routes');
+const homeRoutes = require('./routes/home-routes');
+const trainerRoutes = require('./routes/trainer-routes');
+const eventRoutes = require('./routes/event-routes');
 
 // Initialize the express app
 const app = express();
@@ -19,8 +21,13 @@ app.set('views', 'views');
 // Static Resources
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Use expressLayouts package
+app.use(expressLayouts);
+
 //  Register Routes
-app.get("/", homeRoutes);
+app.use("/", homeRoutes);
+app.use("/trainers", trainerRoutes);
+app.use("/events", eventRoutes);
 
 app.listen(port);
 console.log(`Mentor App is running on port ${port}`);

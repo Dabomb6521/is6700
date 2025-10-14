@@ -1,3 +1,9 @@
+ <% // set optional variables
+ const message = locals.message || "";
+ const entries = locals.entries || {};
+ const errors = locals.errors || [];
+ %>
+
 <!-- Hero Start -->
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
     <div class="container text-center my-5 pt-5 pb-4">
@@ -44,31 +50,44 @@
             </div>
             <div class="col-md-6">
                 <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <p class="<%= errors.length > 0 ? 'text-danger' : 'text-success' %>"><%= message %></p>
                     <!-- By default the form tag will set the method to POST, but generally a good idea to explicily set for clarity -->
                     <form action="/contact" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" />
+                                    <% fieldErrors = errors.filter(error => error.path === "name"); %> 
+                                    <input type="text" class="form-control <%= fieldErrors.length > 0 && 'is-invalid' %>" id="name" name="name" placeholder="Your Name" value="<%= entries.name %>" />
                                     <label for="name">Your Name</label>
+                                    <div class="invalid-feedback">
+                                        <% fieldErrors.forEach((fieldError) => { %>
+                                            <p><%= fieldError.message %></p>
+                                        <% }) %>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" />
+                                    <% fieldErrors = errors.filter(error => error.path === "email"); %>
+                                    <input type="email" class="form-control <%= fieldErrors.length > 0 && 'is-invalid' %>" id="email" name="email" placeholder="Your Email" value="<%= entries.email %>"/>
                                     <label for="email">Your Email</label>
+                                    <div class="invalid-feedback">
+                                        <% fieldErrors.forEach((fieldError) => { %>
+                                            <p><%= fieldError.message %></p>
+                                        <% }) %>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" />
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" value="<%= entries.subject %>"/>
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a message here" id="message" name="message"
-                                        style="height: 150px"></textarea>
+                                        style="height: 150px" <%= entries.message %>></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>

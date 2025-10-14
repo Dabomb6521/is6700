@@ -20,10 +20,24 @@ const Contact = sequelize.define(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        args: [1],
+        msg: "Name must be at least one letter."
+      }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isEmail: {
+          args: true,
+          msg: "Please enter a valid email address."
+        },
+        is: {
+          args: /.+\.(com|net)$/i ,
+          msg: "Please use an email address ending in .com or .net"
+        }
+      }
     },
     subject: {
       type: DataTypes.STRING,

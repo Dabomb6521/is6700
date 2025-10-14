@@ -82,7 +82,7 @@ app.post("/contact", (req, res) => {
     })
     .catch((err) => {
         console.error(err);
-        res.render("contact", {title: "Contact", message: "Oops, something went wrong. Please try again later."})
+        res.render("contact", {title: "Contact", message: "Oops, something went wrong. Please try again later.", entries: req.body, errors: err.errors})
     })
 });
 

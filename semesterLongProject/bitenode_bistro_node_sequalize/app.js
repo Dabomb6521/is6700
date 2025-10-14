@@ -5,13 +5,18 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 
 // Import Controllers
+const homeController = require('./controllers/home-controller');
 const menuController = require('./controllers/menu-controller');
+const contactController = require('./controllers/contact-controller');
+
+// Import Routers
+const menuRouter = require('./routers/menu-router');
+const homeRouter = require('./routers/home-router');
+
 
 // Import temp menu data
 const menu = require('./data/menu.json');
 
-// Import menu model
-const menuModel = require('./models/menu-model');
 // const { nextTick } = require('process');
 const Contact = require('./models/contact-model')
 
@@ -40,19 +45,9 @@ app.use(expressLayouts);
 configModels();
 
 // Register Routes
-app.get("/", (req, res) => {
-    res.render('index.ejs', {title: "Home"});
-});
 
-app.get("/about", (req, res) => {
-    res.render('about.ejs', {title: "About Us"})
-});
 
-app.get(["/menu", "/menu/:catSlug"], menuController.getMenu);
-// instead of defining in two seperate app.get you can pass an array with the paths
-// app.get("/menu/:selectedCategory", menuController.getMenu);
-
-app.get('/menu/:catSlug/:itemSlug', menuController.getMenuItem);
+app.use("/menu", menuRouter);
 
 app.get("/team", (req, res) => {
     res.render('team', {title: "Our Team"});
@@ -62,33 +57,16 @@ app.get("/testimonials", (req, res) => {
     res.render('testimonials', {title: "Testimonials"});
 });
 
-app.get("/contact", (req, res) => {
-    res.render('contact', {title: "Contact", message: ""});
-});
-app.post("/contact", (req, res) => {
-    // Retrieve the requrest body
-    console.log("Request body is: ", req.body);
 
-    // Import
-    Contact.create({
-        name: req.body.name,
-        email: req.body.email,
-        subject: req.body.subject,
-        message: req.body.message
-    })
-    .then((response) => {
-        console.log("Success!", response);
-        res.render("contact", {title: "Contact", message: "Thanks! Your request has been submitted."})
-    })
-    .catch((err) => {
-        console.error(err);
-        res.render("contact", {title: "Contact", message: "Oops, something went wrong. Please try again later.", entries: req.body, errors: err.errors})
-    })
-});
+app.get("/contact", contactController.getContact);
+
+app.post("/contact", contactController.postContact);
 
 app.get("/booking", (req, res) => {
     res.render('booking', {title: "Booking"});
 });
+
+app.use(homeRouter);
 
 // Handle all unrecognized requests
 app.use((req, res) => {

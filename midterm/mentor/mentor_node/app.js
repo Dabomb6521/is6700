@@ -8,6 +8,7 @@ const port = 3000;
 const homeRoutes = require('./routes/home-routes');
 const trainerRoutes = require('./routes/trainer-routes');
 const eventRoutes = require('./routes/event-routes');
+const courseRoutes = require('./routes/course-routes');
 
 // Initialize the express app
 const app = express();
@@ -28,6 +29,7 @@ app.use(expressLayouts);
 app.use("/", homeRoutes);
 app.use("/trainers", trainerRoutes);
 app.use("/events", eventRoutes);
+app.use("/courses", courseRoutes);
 
 app.listen(port);
 console.log(`Mentor App is running on port ${port}`);

@@ -17,6 +17,11 @@ const Course = sequelize.define(
     title: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      set(value){
+        this.setDataValue("name",value);
+
+        this.setDataValue("titleSlug", slugify(value, {lower: true, trim: true}));
+      }
     },
     image: {
       type: DataTypes.STRING,
@@ -62,18 +67,6 @@ const Course = sequelize.define(
     },
     titleSlug: {
       type: DataTypes.STRING
-    },
-  },
-  {
-    hooks: {
-      beforeValidate: (course) => {
-        if (course.title) {
-          course.titleSlug = slugify(course.title, {
-            lower: true,
-            strict: true,
-          });
-        }
-      },
     },
   }
 );

@@ -14,11 +14,9 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: is6700_db
-      MYSQL_USER: devuser
-      MYSQL_PASSWORD: devpassword
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 # Don't retain data when stopping container. Uncomment below to retain data
-#     volumes:
 #       - mysql-data:/var/lib/mysql
 
 # volumes:

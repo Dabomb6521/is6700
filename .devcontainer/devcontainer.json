@@ -1,10 +1,12 @@
 {
     "name": "IS6700 - Fall2025",
-    "image": "node:22-bookworm",
+    "dockerComposeFile": "compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
     "remoteUser": "node",
     "updateRemoteUserUID": true,
     "postCreateCommand": "corepack enable",
-    "forwardPorts": [3000],
+    "forwardPorts": [3000, 3306, 8080],
     "customizations": {
         "vscode": {
             "extensions": [

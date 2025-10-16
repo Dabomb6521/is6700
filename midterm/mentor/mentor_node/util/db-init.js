@@ -4,6 +4,7 @@ const sequelize = require('./database');
 const Trainer = require('../models/trainer-model');
 const Event = require('../models/event-model');
 const Course = require('../models/course-model');
+const Contact = require('../models/contact-model');
 
 // Import Model Data
 const trainerData = require('./trainer-info.json');

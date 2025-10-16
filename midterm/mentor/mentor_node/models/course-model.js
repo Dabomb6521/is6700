@@ -18,7 +18,7 @@ const Course = sequelize.define(
       type: DataTypes.STRING(50),
       allowNull: false,
       set(value){
-        this.setDataValue("name",value);
+        this.setDataValue("title",value);
 
         this.setDataValue("titleSlug", slugify(value, {lower: true, trim: true}));
       }

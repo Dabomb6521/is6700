@@ -9,6 +9,7 @@ const homeRoutes = require('./routes/home-routes');
 const trainerRoutes = require('./routes/trainer-routes');
 const eventRoutes = require('./routes/event-routes');
 const courseRoutes = require('./routes/course-routes');
+const contactRoutes = require('./routes/contact-routes');
 
 // Initialize the express app
 const app = express();
@@ -18,6 +19,9 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // Mount Middleware
+
+// Mount express middleware to parse request bodies
+app.use(express.urlencoded({extened: false}));
 
 // Static Resources
 app.use(express.static(path.join(__dirname, 'public')));
@@ -30,6 +34,7 @@ app.use("/", homeRoutes);
 app.use("/trainers", trainerRoutes);
 app.use("/events", eventRoutes);
 app.use("/courses", courseRoutes);
+app.use("/contact", contactRoutes);
 
 app.listen(port);
 console.log(`Mentor App is running on port ${port}`);

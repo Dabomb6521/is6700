@@ -87,6 +87,24 @@ h6 {
   font-family: var(--heading-font);
 }
 
+.btn-green {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 14px;
+  padding: 8px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s;
+  margin: 0 10px;
+}
+
+.btn-green:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+  color: var(--contrast-color);
+  text-decoration: none;
+}
+
 /* PHP Email Form Messages
 ------------------------------*/
 .php-email-form .error-message {

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "James Rodriguez",
+    "image": "testimonials-1.jpg",
+    "jobTitle": "Restaurant Owner",
+    "starRating": 5,
+    "testimonial": "Sophia's Artisanal Cheese Making course was absolutely fantastic! Not only did I learn the technical skills, but I gained the confidence to start my own cheese production line. The hands-on approach and personal attention made all the difference. My restaurant now features house-made cheeses that customers rave about."
+  },
+  {
+    "name": "Sarah Mitchell",
+    "image": "testimonials-2.jpg",
+    "jobTitle": "Software Engineer at TechCorp",
+    "starRating": 5,
+    "testimonial": "The Quantum Computing Fundamentals course completely changed my understanding of the field. Marcus Chen's teaching style made complex concepts accessible and engaging. I've already applied what I learned to my current projects, and my team has noticed the difference. Highly recommend Mentor for anyone looking to expand their technical skills!"
+  },
+  {
+    "name": "Emily Chen",
+    "image": "testimonials-3.jpg",
+    "jobTitle": "Marketing Director",
+    "starRating": 4,
+    "testimonial": "I took the Urban Beekeeping course out of curiosity, and it became a passion! Amara is incredibly knowledgeable and patient. Within three months of completing the course, I had my first hive on my apartment rooftop. The ongoing mentorship access has been invaluable as I navigate my first year of beekeeping."
+  },
+  {
+    "name": "Michael Thompson",
+    "image": "testimonials-4.jpg",
+    "jobTitle": "Vocal Coach",
+    "starRating": 5,
+    "testimonial": "Dmitri's Competitive Yodeling course was unlike anything I've experienced. As a professional vocal coach, I thought I knew it all, but this course opened up entirely new techniques. My students are fascinated by the exercises, and I've incorporated several of his methods into my regular teaching. Pure gold!"
+  },
+  {
+    "name": "David Martinez",
+    "image": "testimonials-5.jpg",
+    "jobTitle": "Adventure Tour Guide",
+    "starRating": 5,
+    "testimonial": "Isabella's Extreme Ironing course is absolutely brilliant! What started as a joke has become a legitimate skill and talking point for my tour business. The safety training was thorough, and the progression from beginner to advanced challenges was perfectly paced. My clients love the extreme ironing photo ops on our mountain tours!"
+  },
+  {
+    "name": "Lisa Wang",
+    "image": "testimonials-6.jpg",
+    "jobTitle": "Freelance Designer",
+    "starRating": 4,
+    "testimonial": "The Underwater Basket Weaving Advanced course with Kenji was surreal in the best way possible. The combination of craftsmanship and adventure sports created a meditative experience I never expected. It's helped me think more creatively in my design work. A truly unique learning experience that I'll never forget."
+  }
+]

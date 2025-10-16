@@ -5,11 +5,13 @@ const Trainer = require('../models/trainer-model');
 const Event = require('../models/event-model');
 const Course = require('../models/course-model');
 const Contact = require('../models/contact-model');
+const Testimonial = require('../models/testimonial-model');
 
 // Import Model Data
 const trainerData = require('./trainer-info.json');
 const eventData = require('./event-info.json');
 const courseData = require('./course-info.json');
+const testimonialData = require('./testimonial-info.json');
 
 sequelize.sync({force: true})
 .then((result) => {
@@ -27,6 +29,10 @@ sequelize.sync({force: true})
 })
 .then((courseDataResult) => {
     console.log("Course insert successfull!", courseDataResult);
+    return Testimonial.bulkCreate(testimonialData);
+})
+.then((testimonialDataResult) => {
+    console.log("Testimonial insert successfull!", testimonialDataResult);
 })
 .catch((err) => {
     console.error(err);

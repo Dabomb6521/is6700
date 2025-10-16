@@ -2,6 +2,7 @@ const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
+const morgan = require('morgan');
 const port = 3000;
 
 // Import Routes
@@ -19,6 +20,9 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // Mount Middleware
+
+// Mount Morgan middleware to log http requests
+
 
 // Mount express middleware to parse request bodies
 app.use(express.urlencoded({extened: false}));

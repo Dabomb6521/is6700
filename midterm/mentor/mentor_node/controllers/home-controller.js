@@ -1,6 +1,7 @@
 const Course = require('../models/course-model');
 const Event = require('../models/event-model');
 const Trainer = require('../models/trainer-model');
+const Testimonial = require('../models/testimonial-model');
 
 exports.getHome = async (req, res) => {
     try {
@@ -36,6 +37,7 @@ exports.getAbout = async (req, res) => {
             courseCount: await Course.count(),
             eventCount: await Event.count(),
             trainerCount: await Trainer.count(),
+            testimonials: await Testimonial.findAll()
         });
     } catch (err) {console.error(err);};
 };

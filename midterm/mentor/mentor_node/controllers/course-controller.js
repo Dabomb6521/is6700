@@ -33,7 +33,7 @@ exports.getCourseDesc = (req, res, next) => {
         if (!course) {
             return next();
         } else {
-            console.log("Retrieved course is: ", course)
+            // console.log("Retrieved course is: ", course)
             res.render("course-details", { title: "Course Details", course });
         }
     })

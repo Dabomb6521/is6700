@@ -12,6 +12,9 @@ const eventRoutes = require('./routes/event-routes');
 const courseRoutes = require('./routes/course-routes');
 const contactRoutes = require('./routes/contact-routes');
 
+// Import Logging Middleware
+const logRequests = require('./middleware');
+
 // Initialize the express app
 const app = express();
 
@@ -22,7 +25,7 @@ app.set('views', 'views');
 // Mount Middleware
 
 // Mount Morgan middleware to log http requests
-
+app.use(logRequests);
 
 // Mount express middleware to parse request bodies
 app.use(express.urlencoded({extened: false}));

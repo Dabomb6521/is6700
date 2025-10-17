@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Jennifer Williams",
+    "email": "jwilliams@email.com",
+    "subject": "Question about Quantum Computing course",
+    "message": "Hi, I'm interested in enrolling in the Quantum Computing Fundamentals course. Does this course require any prerequisite knowledge in physics or computer science? Also, is there a discount for early registration?",
+    "postDate": "2025-05-10T09:15:30.000Z",
+    "response": "Thank you for your interest! While basic programming knowledge is helpful, no advanced physics background is required. We do offer a 10% early bird discount if you register 2 weeks before the course starts.",
+    "responseDate": "2025-05-11T14:22:00.000Z"
+  },
+  {
+    "name": "Marcus Thompson",
+    "email": "mthompson@techcorp.com",
+    "subject": "Corporate training inquiry",
+    "message": "Our company is looking to provide training for a team of 15 developers. Can you accommodate group bookings and offer corporate rates? We're particularly interested in your advanced programming courses.",
+    "postDate": "2025-10-12T11:30:45.000Z",
+    "response": null,
+    "responseDate": null
+  },
+  {
+    "name": "Sarah Chen",
+    "email": "schen88@gmail.com",
+    "subject": "Course schedule conflict",
+    "message": "I registered for the Urban Beekeeping course but just realized it conflicts with my work schedule. Is it possible to transfer to a different session or get a refund?",
+    "postDate": "2025-01-08T16:45:00.000Z",
+    "response": "We'd be happy to help! You can transfer to any upcoming session at no additional cost. Please log into your account and select the 'Transfer Course' option, or we can process a full refund if preferred.",
+    "responseDate": "2025-01-09T10:15:30.000Z"
+  },
+  {
+    "name": "David Rodriguez",
+    "email": "d.rodriguez@startup.io",
+    "subject": "Partnership opportunity",
+    "message": "I represent a tech startup and we're interested in partnering with Mentor to offer courses to our clients. Could we schedule a call to discuss potential collaboration?",
+    "postDate": "2025-08-14T08:20:15.000Z",
+    "response": null,
+    "responseDate": null
+  },
+  {
+    "name": "Emily Patterson",
+    "email": "epatterson@university.edu",
+    "subject": "Student discount availability",
+    "message": "I'm currently a full-time graduate student. Do you offer student discounts on course fees? I'm very interested in the Artisanal Cheese Making course!",
+    "postDate": "2025-08-11T13:50:22.000Z",
+    "response": "Yes! We offer a 15% student discount. Please send a copy of your current student ID to student-verify@mentor.com and we'll send you a discount code.",
+    "responseDate": "2025-08-12T15:30:00.000Z"
+  },
+  {
+    "name": "Robert Kim",
+    "email": "rkim2000@outlook.com",
+    "subject": "Technical issues with course portal",
+    "message": "I'm enrolled in the Competitive Yodeling course but I can't access the online materials. The portal keeps giving me an error message when I try to log in. Can someone help?",
+    "postDate": "2025-04-13T19:25:40.000Z",
+    "response": null,
+    "responseDate": null
+  },
+  {
+    "name": "Amanda Foster",
+    "email": "afoster@creative.design",
+    "subject": "Certificate of completion",
+    "message": "I completed the Underwater Basket Weaving course last month. How do I obtain my certificate of completion? I need it for my professional portfolio.",
+    "postDate": "2025-07-07T10:05:18.000Z",
+    "response": "Congratulations on completing the course! Your certificate has been emailed to you. Please check your spam folder if you don't see it. You can also download it from your student dashboard under 'My Certificates'.",
+    "responseDate": "2025-10-07T11:45:00.000Z"
+  },
+  {
+    "name": "Jason Martinez",
+    "email": "jmartinez.photo@gmail.com",
+    "subject": "Instructor credentials inquiry",
+    "message": "Before enrolling, I'd like to know more about Marcus Chen's background and qualifications for teaching Quantum Computing. Where can I find information about the instructors?",
+    "postDate": "2025-03-15T14:10:30.000Z",
+    "response": null,
+    "responseDate": null
+  },
+  {
+    "name": "Lisa Anderson",
+    "email": "landerson@consulting.com",
+    "subject": "Cancellation request",
+    "message": "Unfortunately, I need to cancel my registration for the Extreme Ironing course due to a family emergency. What is your cancellation policy?",
+    "postDate": "2025-01-09T07:30:15.000Z",
+    "response": "We're sorry to hear that. Our cancellation policy allows full refunds up to 7 days before the course starts. Since your course is in 10 days, you're eligible for a complete refund. We've processed it and you should see it in 3-5 business days.",
+    "responseDate": "2025-01-12T09:00:00.000Z"
+  },
+  {
+    "name": "Michael Nguyen",
+    "email": "mnguyen.dev@proton.me",
+    "subject": "Course material formats",
+    "message": "Are the course materials available in formats accessible for visually impaired students? I use a screen reader and want to make sure I can fully participate.",
+    "postDate": "2025-01-13T12:15:50.000Z",
+    "response": null,
+    "responseDate": null
+  }
+]

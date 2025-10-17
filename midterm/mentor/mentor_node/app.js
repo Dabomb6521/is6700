@@ -11,6 +11,7 @@ const trainerRoutes = require('./routes/trainer-routes');
 const eventRoutes = require('./routes/event-routes');
 const courseRoutes = require('./routes/course-routes');
 const contactRoutes = require('./routes/contact-routes');
+const adminRoutes = require('./routes/admin/admin-routes');
 
 // Import Logging Middleware
 const logRequests = require('./middleware');
@@ -42,6 +43,7 @@ app.use("/trainers", trainerRoutes);
 app.use("/events", eventRoutes);
 app.use("/courses", courseRoutes);
 app.use("/contact", contactRoutes);
+app.use("/admin", adminRoutes);
 
 app.listen(port);
 console.log(`Mentor App is running on port ${port}`);

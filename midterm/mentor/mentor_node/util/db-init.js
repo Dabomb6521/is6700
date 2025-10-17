@@ -12,6 +12,7 @@ const trainerData = require('./trainer-info.json');
 const eventData = require('./event-info.json');
 const courseData = require('./course-info.json');
 const testimonialData = require('./testimonial-info.json');
+const contactData = require('./contact-entries.json');
 
 sequelize.sync({force: true})
 .then((result) => {
@@ -33,6 +34,10 @@ sequelize.sync({force: true})
 })
 .then((testimonialDataResult) => {
     console.log("Testimonial insert successfull!", testimonialDataResult);
+    return Contact.bulkCreate(contactData);
+})
+.then((contactDataResult) => {
+    console.log("Fake Contacts insert successfull!", contactDataResult);
 })
 .catch((err) => {
     console.error(err);

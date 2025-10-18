@@ -19,7 +19,7 @@ exports.postContact = (req, res) => {
         res.render("thanks", {title: "Thank You"});
     })
     .catch((err) => {
-        console.error(err);
+        console.error("Full Error: ",err);
         res.render("contact", {title: "Contact", message: "Oops, something went wrong. Please try again later."})
     })
 };

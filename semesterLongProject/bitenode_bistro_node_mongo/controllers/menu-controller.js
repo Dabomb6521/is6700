@@ -9,7 +9,7 @@ const Menu = require('../models/menu-model-mongo');
 exports.getMenu = async (req, res, next) => {
   const { catSlug } = req.params;
 
-  let categories, items;
+  let categories;
 
   try {
     categories = await Menu.fetchMenu();
@@ -76,20 +76,25 @@ exports.getMenuItem = async (req, res, next) => {
   const { itemSlug, catSlug } = req.params; 
   
   try {
-    let item = await MenuItem.findOne({
-      where: {
-      slug: itemSlug,
-    },
-    include: {
-      model: MenuCategory
-    },
-    });
+    // let item = await MenuItem.findOne({
+    //   where: {
+    //   slug: itemSlug,
+    // },
+    // include: {
+    //   model: MenuCategory
+    // },
+    // });
 
-    if (!item) {
+    let category = await Menu.fetchCategoryByItemSlug(itemSlug)
+    if (!category) {
         return next();
       } else {
-        console.log("Retrieved item is: ", item)
-        res.render("menu-item", { title: "Menu Item", item });
+        console.log("Retrieved item is: ", category)
+        
+
+        const item = category.items.find(item => item.slug === itemSlug)
+
+        res.render("menu-item", { title: "Menu Item", category, item });
       }
   } catch (error) {
     (err) => console.log(err)

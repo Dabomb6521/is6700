@@ -44,8 +44,7 @@
                         class="tab-pane fade show p-0 <%= category.slug === catSlug ? 'active' : '' %>">
                         <div class="row g-4">
                             <!-- use filter to grab items -->
-                            <% let categoryItems = items.filter(item => item.cat_id === category.id)
-                            categoryItems.forEach((item)=> { %>
+                            <% category.items.forEach((item)=> { %>
 
                                 <div class="col-lg-6">
                                     <a href="/menu/<%= category.slug %>/<%= item.slug %>">

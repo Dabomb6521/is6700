@@ -14,4 +14,11 @@ module.exports = class Menu {
         // Query database to get all menu data
         return db.collection('menu').find().toArray(); // Use toarray to dump all data into an array
     }
+    // Static function for retrieving a single menu category by item slug
+    static fetchCategoryByItemSlug(itemSlug) {
+        const db =getDb();
+        return db.collection('menu').findOne({
+            'items.slug': itemSlug
+        });
+    }
 };

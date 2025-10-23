@@ -12,6 +12,7 @@ const contactController = require('./controllers/contact-controller');
 // Import Routers
 const menuRouter = require('./routers/menu-router');
 const homeRouter = require('./routers/home-router');
+const contactRouter = require('./routers/contact-router');
 
 
 // import MongoDB connection function
@@ -48,6 +49,7 @@ configModels();
 
 
 app.use("/menu", menuRouter);
+app.use("/contact", contactRouter)
 
 app.get("/team", (req, res) => {
     res.render('team', {title: "Our Team"});
@@ -56,11 +58,6 @@ app.get("/team", (req, res) => {
 app.get("/testimonials", (req, res) => {
     res.render('testimonials', {title: "Testimonials"});
 });
-
-
-app.get("/contact", contactController.getContact);
-
-app.post("/contact", contactController.postContact);
 
 app.get("/booking", (req, res) => {
     res.render('booking', {title: "Booking"});

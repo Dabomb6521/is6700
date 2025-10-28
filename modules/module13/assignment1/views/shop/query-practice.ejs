@@ -1,0 +1,28 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <ol>
+        <li>
+            <a href="/query-practice/bulk-add">Bulk Add Products</a>
+        </li>
+        <li>
+            <a href="/query-practice/start-with-c">Get Products that start with 'C'</a>
+        </li>
+        <li>
+            <a href="/query-practice/product-between">Get products with a price between $100 and $200</a>
+        </li>
+        <li>
+            <a href="/query-practice/contains-your">Get products with a description containing the word 'your'</a>
+        </li>
+        <li>
+            <a href="/query-practice/blender-price-increase">Increase the price of the blender by $10</a>
+        </li>
+        <li>
+            <a href="/query-practice/delete-all-products">Delete all products</a>
+        </li>
+    </ol>
+<%- include('../includes/end.ejs') %>

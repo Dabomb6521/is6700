@@ -1,7 +1,7 @@
 // Handler functions that pertainer to the menu
 
-const MenuCategory = require("../models/menu-category-model");
-const MenuItem = require("../models/menu-item-model");
+const MenuCategory = require("../models/menu-category-model-mongoose");
+const MenuItem = require("../models/menu-item-model-mongoose");
 
 const Menu = require('../models/menu-model-mongo');
 
@@ -12,9 +12,9 @@ exports.getMenu = async (req, res, next) => {
   let categories;
 
   try {
-    categories = await Menu.fetchMenu();
+    categories = await MenuCategory.find().populate('items').sort({_id: 1});
 
-    console.log("Categories from Mongo are : ", categories);
+    console.log("Categories from Mongoose are : ", categories);
 
   if (
         catSlug &&
@@ -76,25 +76,14 @@ exports.getMenuItem = async (req, res, next) => {
   const { itemSlug, catSlug } = req.params; 
   
   try {
-    // let item = await MenuItem.findOne({
-    //   where: {
-    //   slug: itemSlug,
-    // },
-    // include: {
-    //   model: MenuCategory
-    // },
-    // });
 
-    let category = await Menu.fetchCategoryByItemSlug(itemSlug)
-    if (!category) {
+    let item = await MenuItem.findOne({slug: itemSlug}).populate("category");
+    if (!item) {
         return next();
       } else {
-        console.log("Retrieved item is: ", category)
-        
+        console.log("Retrieved item is: ", item)
 
-        const item = category.items.find(item => item.slug === itemSlug)
-
-        res.render("menu-item", { title: "Menu Item", category, item });
+        res.render("menu-item", { title: "Menu Item", item });
       }
   } catch (error) {
     (err) => console.log(err)

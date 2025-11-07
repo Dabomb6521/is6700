@@ -10,7 +10,9 @@
   "author": "Brayden Corbridge",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "connect-mongodb-session": "^5.0.0",
+    "csrf-sync": "^4.2.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-ejs-layouts": "^2.5.1",

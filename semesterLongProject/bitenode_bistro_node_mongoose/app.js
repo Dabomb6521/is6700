@@ -6,15 +6,26 @@ const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const { csrfSync } = require("csrf-sync");
 
 const MONGODB_URI =
   "mongodb+srv://dbo:aggies@cluster0.0ebdpxo.mongodb.net/bitenode-bistro-mongoose?retryWrites=true&w=majority&appName=Cluster0";
-  
-  // Initialize MongoDB Store
-  const store = new MongoDBStore({
-    uri: MONGODB_URI,
-    collection: "sessions",
-  });
+
+// Initialize MongoDB Store
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: "sessions",
+});
+
+// Initalize csrf protection
+const {
+  invalidCsrfTokenError, // This is just for convenience if you plan on making your own middleware.
+  generateToken, // Use this in your routes to generate, store, and get a CSRF token.
+  csrfSynchronisedProtection, // This is the default CSRF protection middleware.
+} = csrfSync({
+  // Override the default getTokenFromRequest to ge the token from the req.body
+  getTokenFromRequest: req => req.body._csrf //_csrf is the name of the hidden field expected in the form
+});
 
 // Import Controllers
 const homeController = require("./controllers/home-controller");
@@ -25,7 +36,7 @@ const contactController = require("./controllers/contact-controller");
 const menuRouter = require("./routers/menu-router");
 const homeRouter = require("./routers/home-router");
 const contactRouter = require("./routers/contact-router");
-const authRouter = require('./routers/auth-router');
+const authRouter = require("./routers/auth-router");
 
 // const { nextTick } = require('process');
 const Contact = require("./models/contact-model");
@@ -35,7 +46,6 @@ const { configModels } = require("./util/model-config");
 
 // Initialize the express app
 const app = express();
-
 
 // Initialize app settings
 app.set("view engine", "ejs"); // What templating engine should be used
@@ -56,21 +66,29 @@ app.use(expressLayouts);
 configModels();
 
 // Register Session middleware (should come before routes)
-app.use(session({
-  secret: "my secret",
-  resave: false,
-  saveUninitialized: false,
-  store: store,
-  cookie: {
-    maxAge: 1000 * 60 * 60, // cookie lasts for one hour (in milliseconds)
-    sameSite: true // prevent cookie from being sent to other sites (C5RF)
-  }
-}));
+app.use(
+  session({
+    secret: "my secret",
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+    cookie: {
+      maxAge: 1000 * 60 * 60, // cookie lasts for one hour (in milliseconds)
+      sameSite: true, // prevent cookie from being sent to other sites (C5RF)
+    },
+  })
+);
+
+// Mount middleware for csrf protection
+// This protects all requests except GET requrests which are ignored
+app.use(csrfSynchronisedProtection)
 
 // Middleware to store session data in res.locals for easy access from views
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.session.isAuthenticated || false;
   res.locals.user = req.session.user || {};
+  // Generate the csrf token and store in res.locals for easy access on views
+  res.locals.csrfToken = generateToken(req);
   next();
 });
 
@@ -101,9 +119,7 @@ app.use((req, res) => {
 });
 
 mongoose
-  .connect(
-    MONGODB_URI
-  )
+  .connect(MONGODB_URI)
   .then(() => {
     console.log("Mongoose Connected!");
     app.listen(3000);

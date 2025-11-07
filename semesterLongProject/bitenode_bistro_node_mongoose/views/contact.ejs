@@ -53,6 +53,7 @@
                     <p class="<%= errors.length > 0 ? 'text-danger' : 'text-success' %>"><%= message %></p>
                     <!-- By default the form tag will set the method to POST, but generally a good idea to explicily set for clarity -->
                     <form action="/contact" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">

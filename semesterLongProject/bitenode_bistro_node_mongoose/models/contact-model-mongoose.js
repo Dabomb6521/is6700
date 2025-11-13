@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const contactSchema = new Schema({
   name: {
     type: String,
-    required: [true, 'Please provide your name.'],
+    required: [true, 'Please provide your name.'], // Custom Validation
     minLength: [1, "Name must be at least 1 character"],
   },
   email: {

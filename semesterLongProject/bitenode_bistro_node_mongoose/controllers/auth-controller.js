@@ -1,12 +1,8 @@
 const User = require("../models/user-model-mongoose");
 
-const { response } = require("express");
-const { rawListeners } = require("../models/menu-category-model-mongoose");
-
 exports.getLogin = (req, res) => {
   res.render("auth/login", {
-    path: "/login",
-    title: "Contact",
+    title: "Login",
   });
 };
 
@@ -16,12 +12,11 @@ exports.getProfile = (req, res) => {
 
 exports.getSignup = (req, res) => {
   res.render("auth/signup", {
-    path: "/signup",
     title: "Signup",
   });
 };
 
-exports.postLogin = async (req, res) => {
+exports.postLogin = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -29,22 +24,25 @@ exports.postLogin = async (req, res) => {
     user = await User.findOne({ email: email });
 
     if (!user) {
+      // Find matching user by email
       return res.render("auth/login", {
         title: "Login",
         message: "Invalid Credentials",
-        entries: req.body,
+        entries: req.body, // Pass back user entried to re-populate form
       });
     }
 
+    // Call model instance method to validate password
     const validPassword = await user.validatePassword(password);
     if (!validPassword) {
       return res.render("auth/login", {
         title: "Login",
         message: "Invalid Credentials",
-        entries: req.body,
+        entries: req.body, 
       });
     }
 
+    // Authentication Succeeded
     if (user && validPassword) {
       req.session.isAuthenticated = true;
       req.session.user = user;
@@ -54,6 +52,7 @@ exports.postLogin = async (req, res) => {
           console.log("Error saving session: ", err);
         }
         req.flash("success", "Login Successful!");
+        // Redirect to previously requested page if applicable
         if (req.session.returnTo) {
           let redirectTo = req.session.returnTo;
           delete req.session.returnTo; // prevent looping
@@ -73,16 +72,14 @@ exports.postLogin = async (req, res) => {
 };
 
 exports.postSignup = async (req, res) => {
-  const firstName = req.body.firstname;
-  const lastName = req.body.lastname;
-  const email = req.body.email;
-  const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
+ // Retrieve data from req.body
+  const { firstname, lastname, email, password, confirmpassword } = req.body;
 
   if (password !== confirmPassword) {
     console.log("Passwords do not match.");
     return res.redirect("auth/signup", {
       title: "Signup",
+      // Set up an errors array that matches structure of mongoose errors. Makes errors simpler to handle on view
       errors: [
         {
           path: "confirmPassword",
@@ -109,8 +106,8 @@ exports.postSignup = async (req, res) => {
     }
 
     const user = new User({
-      firstName: firstName,
-      lastName: lastName,
+      firstName: firstname,
+      lastName: lastname,
       email: email,
       password: password,
     });
@@ -143,20 +140,64 @@ exports.postSignup = async (req, res) => {
   }
 };
 
+exports.postProfile = async (req, res, next) => {
+  try{
+    // Retrieve user from database
+    const user = await User.findById(req.session.user_id);
+
+    if (!user) {
+      req.flash("error", "Could not retrieve user data.");
+      return res.redirect("/auth/profile");
+    }
+
+    user.firstName = req.body.firstname;
+    user.lastName = req.body.lastname;
+    user.email = req.body.email;
+  
+  await user.save();
+
+  req.session.user = user;
+  req.session.save(err => {
+    if (err) {
+      console.log("Error saving session: ", err);
+    }
+
+    req.flash("success", "Profile Updated!");
+    return res.redirect("/auth/profile");
+  });
+ }catch (error) {
+  console.log("Error Occurred: ", error);
+  req.flash("error", "Could not save profile data");
+  return res.redirect('/auth/profile');
+ }
+};
+
+exports.logout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session: ", err);
+    }
+    res.redirect("/auth/login"); // Redirect to login or homepage
+  })
+}
+
+// Middleware function to verify that user is logged in before proceeding.
 exports.verifyAuth = (req, res, next) => {
   if (req.session.isAuthenticated) {
     return next();
   }
   req.flash("error", "Please login to access this page.");
-  req.session.returnTo = req.originalUrl;
+  req.session.returnTo = req.originalUrl; // Store the URL of the original requrest in session to redirect user upon successful login.
   res.redirect("/auth/login");
 };
 
+
+// Middleware function to verify that user is an admin in before proceeding.
 exports.verifyAdmin = (req, res, next) => {
   if (req.session.used?.roles.includes("admin")){
     return next();
   }
-  eq.flash("error", "You must be admin to access this page.");
+  req.flash("error", "You must be admin to access this page.");
   req.session.returnTo = req.originalUrl;
   res.redirect("/auth/login");
 }

@@ -14,15 +14,16 @@ const employeeSchema = new Schema({
   },
   title: {
     type: String,
+    required: false
   },
   image: {
     type: Image,
     required: true
   },
-  slogan: {
-    type: String,
-    required: true,
-  },
+}, {
+  // Options
+  collection: 'employees',
+  timestamps: false, // no `createdAt` and `updatedAt` fields by default
 });
 
 // Create and export the module based on the schema

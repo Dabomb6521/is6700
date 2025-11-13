@@ -3,8 +3,6 @@
 const MenuCategory = require("../models/menu-category-model-mongoose");
 const MenuItem = require("../models/menu-item-model-mongoose");
 
-const Menu = require('../models/menu-model-mongo');
-
 
 exports.getMenu = async (req, res, next) => {
   const { catSlug } = req.params;
@@ -30,6 +28,9 @@ exports.getMenu = async (req, res, next) => {
         });
   } catch (err) {
     console.error(err);
+    // Invoke error-handling middleware
+    const customError = new Error("Unable to retrieve menu data.  Please try again later.");
+    next(customError);
   }
 };
 
@@ -86,8 +87,10 @@ exports.getMenuItem = async (req, res, next) => {
         res.render("menu-item", { title: "Menu Item", item });
       }
   } catch (error) {
-    const customError = new Error(err);
-      return next(customError);
+    console.log(error);
+    // Invoke error-handling middleware
+    const customError = new Error("Unable to retrieve menu item.  Please try again later.");
+    next(customError);
   }
 };
 

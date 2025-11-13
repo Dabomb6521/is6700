@@ -86,7 +86,8 @@ exports.getMenuItem = async (req, res, next) => {
         res.render("menu-item", { title: "Menu Item", item });
       }
   } catch (error) {
-    (err) => console.log(err)
+    const customError = new Error(err);
+      return next(customError);
   }
 };
 

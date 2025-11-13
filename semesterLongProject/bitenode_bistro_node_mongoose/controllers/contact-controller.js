@@ -1,3 +1,4 @@
+const { response } = require('express');
 const Contact = require('../models/contact-model-mongoose')
 
 exports.getContact = (req, res) => {
@@ -24,3 +25,17 @@ exports.postContact = (req, res) => {
         res.render("contact", {title: "Contact", message: "Oops, something went wrong. Please try again later."})
     })
 };
+
+exports.postContactResponse = async (req, res) => {
+    const { id, response } = req.body;
+    try{
+        const result = await Contact.findByIdAndUpdate(id, {set: {response: response, responseDate: new Date()}}, {new: true});
+        console.log("Result of update operation is: ", result);
+        req.flash("success", "Contact Response Recorded.");
+        res.redirect("/contact/respond");
+    } catch (err){
+        console.log("Error saving response: ", err);
+        req.flash("error", "Error saving response.");
+        res.redirect("/admin/contacts");
+    }
+}

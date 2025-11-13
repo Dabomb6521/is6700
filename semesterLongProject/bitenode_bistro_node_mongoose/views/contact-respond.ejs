@@ -23,7 +23,9 @@
             <label for="contactId" class="form-label">Select Contact Request</label>
             <select id="contactId" class="form-select" name="contactId">
               <option value="" selected disabled>-- Please select a request --</option>
-              <option value="1">John Doe - 2025-03-06</option>
+              <% contacts.forEach(contact => { %>
+              <option value="<%= contact._id %>"><%= selectedContact && selectedContact._id.equals(contact._id) ? 'selected' : '' %>> <%= contact.name %> - <%= contact.createdAt.toISOString().split('T')[0] %></option>
+              <% }); %>
               <option value="2">Jane Smith - 2025-03-05</option>
             </select>
           </div>

@@ -10,7 +10,7 @@ router.get("/", contactController.getContact);
 
 router.post("/", contactController.postContact);
 
-router.get("/respond", authController.verifyAdmin)
+router.get("/respond", authController.verifyAdmin, contactController.getContactsWith)
 router.post("/load", )
 
 // export router

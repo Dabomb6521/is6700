@@ -24,7 +24,7 @@ const {
   csrfSynchronisedProtection, // This is the default CSRF protection middleware.
 } = csrfSync({
   // Override the default getTokenFromRequest to ge the token from the req.body
-  getTokenFromRequest: req => req.body._csrf //_csrf is the name of the hidden field expected in the form
+  getTokenFromRequest: (req) => req.body._csrf, //_csrf is the name of the hidden field expected in the form
 });
 
 // Import Controllers
@@ -37,6 +37,7 @@ const menuRouter = require("./routers/menu-router");
 const homeRouter = require("./routers/home-router");
 const contactRouter = require("./routers/contact-router");
 const authRouter = require("./routers/auth-router");
+const apiRouter = require("./routers/api-router");
 
 // const { nextTick } = require('process');
 const Contact = require("./models/contact-model");
@@ -81,7 +82,7 @@ app.use(
 
 // Mount middleware for csrf protection
 // This protects all requests except GET requrests which are ignored
-app.use(csrfSynchronisedProtection)
+app.use(csrfSynchronisedProtection);
 
 // Middleware to store session data in res.locals for easy access from views
 app.use((req, res, next) => {
@@ -94,6 +95,7 @@ app.use((req, res, next) => {
 
 // Register Routes
 
+app.use("/api", apiRouter);
 app.use("/auth", authRouter);
 app.use("/menu", menuRouter);
 app.use("/contact", contactRouter);
@@ -112,7 +114,7 @@ app.get("/booking", (req, res) => {
 
 app.use(homeRouter);
 
-app.get('/500', errorController.get500);
+app.get("/500", errorController.get500);
 
 app.use(errorController.get404);
 

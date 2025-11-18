@@ -6,7 +6,7 @@
     "remoteUser": "node",
     "updateRemoteUserUID": true,
     "postCreateCommand": "corepack enable",
-    "forwardPorts": [3000, 3306, 8080, 8088],
+    "forwardPorts": [3000, 3306, 8080],
     "customizations": {
         "vscode": {
             "extensions": [

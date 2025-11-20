@@ -31,6 +31,7 @@ const {
 const homeController = require("./controllers/home-controller");
 const menuController = require("./controllers/menu-controller");
 const contactController = require("./controllers/contact-controller");
+const errorController = require("./controllers/error-controller");
 
 // Import Routers
 const menuRouter = require("./routers/menu-router");
@@ -38,6 +39,7 @@ const homeRouter = require("./routers/home-router");
 const contactRouter = require("./routers/contact-router");
 const authRouter = require("./routers/auth-router");
 const apiRouter = require("./routers/api-router");
+const recipeRouter = require("./routers/recipe-router");
 
 // const { nextTick } = require('process');
 const Contact = require("./models/contact-model");
@@ -103,6 +105,8 @@ app.use("/contact", contactRouter);
 app.get("/team", (req, res) => {
   res.render("team", { title: "Our Team" });
 });
+
+app.use('/recipes', recipeRouter);
 
 app.get("/testimonials", (req, res) => {
   res.render("testimonials", { title: "Testimonials" });

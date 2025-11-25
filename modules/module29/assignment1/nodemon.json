@@ -1,0 +1,8 @@
+{
+  "env": {
+    "MONGO_USER": "dbo",
+    "MONGO_PASSWORD": "aggies",
+    "MONGO_DEFAULT_DATABASE": "shop-ch29",
+    "STRIPE_KEY": "sk_test_BMD9aaviqJzK0hlROg2KMRbD"
+  }
+}

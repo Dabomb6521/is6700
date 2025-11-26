@@ -7,9 +7,11 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const { csrfSync } = require("csrf-sync");
+require("dotenv").config();
+const compression = require("compression");
+const helmet = require("helmet");
 
-const MONGODB_URI =
-  "mongodb+srv://dbo:aggies@cluster0.0ebdpxo.mongodb.net/bitenode-bistro-mongoose?retryWrites=true&w=majority&appName=Cluster0";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Initialize MongoDB Store
 const store = new MongoDBStore({
@@ -56,6 +58,48 @@ app.set("views", "views"); // Where should app find views
 
 //  Mount middleware
 
+// Compress static resources to minimize response size
+app.use(compression());
+
+// Set secure headers
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      baseUri: ["'self'"],
+      connectSrc: ["'self'"],
+      fontSrc: [
+        "'self'",
+        "https://fonts.gstatic.com",
+        "https://cdn.jsdelivr.net",
+        "https://cdnjs.cloudflare.com",
+      ],
+      frameAncestors: ["'self'"],
+      imgSrc: [
+        "'self'",
+        "data:",
+        "https://cdn.dummyjson.com/", // Images for recipe API
+      ],
+      objectSrc: ["'none'"],
+      scriptSrc: [
+        "'self'",
+        "https://code.jquery.com",
+        "https://cdn.jsdelivr.net",
+        "https://cdnjs.cloudflare.com",
+        "'unsafe-inline'", // For inline client-side JavaScript (ideally move to external file and omit this)
+      ],
+      styleSrc: [
+        "'self'",
+        "https://fonts.googleapis.com",
+        "https://cdn.jsdelivr.net",
+        "https://cdnjs.cloudflare.com",
+        "'unsafe-inline'", // For inline CSS styles (ideally move to external file and omit this)
+      ],
+      upgradeInsecureRequests: [], // Use https when possible
+    },
+  })
+);
+
 // Mount express middleware to parse requrest bodies
 app.use(express.urlencoded({ extended: false }));
 
@@ -71,7 +115,7 @@ configModels();
 // Register Session middleware (should come before routes)
 app.use(
   session({
-    secret: "my secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: store,
@@ -106,7 +150,7 @@ app.get("/team", (req, res) => {
   res.render("team", { title: "Our Team" });
 });
 
-app.use('/recipes', recipeRouter);
+app.use("/recipes", recipeRouter);
 
 app.get("/testimonials", (req, res) => {
   res.render("testimonials", { title: "Testimonials" });
@@ -126,7 +170,7 @@ mongoose
   .connect(MONGODB_URI)
   .then(() => {
     console.log("Mongoose Connected!");
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000);
     console.log("App is running on port 3000");
   })
   .catch((error) => {

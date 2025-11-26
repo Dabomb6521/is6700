@@ -26,8 +26,8 @@ exports.getRecipeApiToken = async (req, res, next) => {
     // Send an axios POST request to recieve a token (include user credentials in body of the request)
     try {
       const response = await axios.post("https://dummyjson.com/auth/login", {
-        username: "emilys",
-        password: "emilyspass",
+        username: process.env.RECIPE_API_USERNAME,
+        password: process.env.RECIPE_API_PASSWORD,
         expiresInMins: 30,
       });
 

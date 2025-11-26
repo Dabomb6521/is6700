@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Introduction to Quantum Computing",
+        "summary": "Join Marcus Chen for an immersive workshop exploring the fundamentals of quantum mechanics and how they apply to modern computing. This beginner-friendly session will demystify qubits, superposition, and entanglement. No physics degree required! By the end, you'll understand why quantum computers could revolutionize everything from cryptography to drug discovery.",
+        "image": "quantum-computing.jpg",
+        "date": "2025-11-15"
+    },
+    {
+        "title": "Urban Beekeeping Basics",
+        "summary": "Amara Okafor invites you to discover the sweet world of urban beekeeping! Learn how to set up and maintain your own rooftop or balcony hive, understand bee behavior, and harvest your first honey. This hands-on workshop covers everything from selecting the right equipment to navigating local regulations. Leave with the confidence to start your own apiary and help save the pollinators.",
+        "image": "urban-beekeeping.jpg",
+        "date": "2025-12-03"
+    },
+    {
+        "title": "Alpine Yodeling Championship Semi-Finals",
+        "summary": "Dmitri Volkov hosts the regional semi-finals for the prestigious International Yodeling Championship. Watch as talented vocalists from across the country compete in traditional and freestyle yodeling categories. Experience the haunting beauty of this Alpine art form in a state-of-the-art auditorium with perfect acoustics. The top five performers advance to nationals in Switzerland.",
+        "image": "yodeling.jpg",
+        "date": "2026-01-20"
+    },
+    {
+        "title": "Artisanal Cheese Tasting & Pairing Evening",
+        "summary": "Sophia Ramirez presents an elegant evening of cheese appreciation featuring twelve handcrafted varieties from local and international producers. Learn the art of proper cheese tasting, discover perfect wine pairings, and understand what makes each cheese unique. From creamy bries to sharp cheddars and everything in between, expand your palate and impress at your next dinner party.",
+        "image": "artisanal-cheese-tasting.jpg",
+        "date": "2026-02-14"
+    }
+]

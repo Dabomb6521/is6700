@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Marcus Chen",
+        "image": "team-1.jpg",
+        "expertise": "Quantum Computing",
+        "bio": "Marcus spent a decade at CERN before joining Mentor to make quantum mechanics accessible to everyone. He believes the future of computing lies in qubits, and he's on a mission to demystify this revolutionary technology. When he's not teaching, Marcus enjoys solving Rubik's cubes blindfolded and collecting vintage calculators."
+    },
+    {
+        "name": "Sophia Ramirez",
+        "image": "team-2.jpg",
+        "expertise": "Artisanal Cheese Making",
+        "bio": "After leaving her career in corporate finance, Sophia discovered her true passion: transforming milk into culinary masterpieces. She's traveled to France, Italy, and Switzerland to study under master cheesemakers. Sophia's courses cover everything from basic mozzarella to aged goudas. Her motto: 'Life is too short for boring cheese.'"
+    },
+    {
+        "name": "Dmitri Volkov",
+        "image": "team-3.jpg",
+        "expertise": "Competitive Yodeling",
+        "bio": "Dmitri is a three-time International Yodeling Championship finalist who brings Alpine tradition to the digital age. Born in the Swiss mountains, he's dedicated his life to preserving and innovating this unique vocal art form. His online courses have helped thousands discover their inner yodeler, regardless of whether they've ever seen a mountain."
+    },
+    {
+        "name": "Amara Okafor",
+        "image": "team-4.jpg",
+        "expertise": "Urban Beekeeping",
+        "bio": "Amara transformed her Brooklyn rooftop into a thriving apiary and never looked back. She's passionate about educating city dwellers on the importance of pollinators and sustainable honey production. Her courses teach everything from hive management to harvesting liquid gold. Amara has placed over 200 beehives across urban landscapes and rescued countless swarms."
+    },
+    {
+        "name": "Kenji Tanaka",
+        "image": "team-5.jpg",
+        "expertise": "Underwater Basket Weaving",
+        "bio": "Yes, it's a real thing, and Kenji is the world's foremost expert. After years of traditional basket weaving felt too dry, he literally took his craft underwater. His innovative techniques combine ancient Japanese weaving methods with modern scuba equipment. Students learn breath control, buoyancy management, and the meditative art of subaquatic craftsmanship."
+    },
+    {
+        "name": "Isabella Santos",
+        "image": "team-6.jpg",
+        "expertise": "Extreme Ironing",
+        "bio": "Isabella holds the world record for ironing at the highest altitude (Mount Kilimanjaro summit). She's turned the mundane chore into an adrenaline-pumping extreme sport. Her courses cover ironing while rock climbing, skydiving, and even underwater. Isabella believes that if you're going to iron, you might as well make it memorable. Safety gear included in all courses."
+    }
+]

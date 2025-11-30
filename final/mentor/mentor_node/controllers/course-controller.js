@@ -2,12 +2,8 @@ const Course = require('../models/course-model');
 const Trainer = require('../models/trainer-model');
 
 exports.getAllCourses = (req, res) => {
-    Course.findAll({
-        include: [{
-            model: Trainer,
-            as: 'trainerInfo'
-        }]
-    })
+    Course.find()
+    .populate('trainer')
     .then(courses => {
         res.render('courses', {
             title: 'Courses',
@@ -20,15 +16,8 @@ exports.getAllCourses = (req, res) => {
 exports.getCourseDesc = (req, res, next) => {
     const titleSlug = req.params.titleSlug;
 
-    Course.findOne({
-        where: {
-            titleSlug: titleSlug
-        },
-        include: [{
-            model: Trainer,
-            as: 'trainerInfo'
-        }]
-    })
+    Course.findOne({titleSlug: titleSlug})
+    .populate('trainer')
     .then((course) => {
         if (!course) {
             return next();

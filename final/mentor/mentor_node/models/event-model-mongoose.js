@@ -12,7 +12,13 @@ const eventSchema = new Schema({
   },
   image: {
     type: Image,
-    required: true
+    required: true,
+    validate: {
+        validator: function(value) {
+            return value.endsWith('.jpg') || value.endsWith('.png');
+        },
+        message: 'Image must end with .jpg or .png'
+    }
   },
   date: {
     type: Date,

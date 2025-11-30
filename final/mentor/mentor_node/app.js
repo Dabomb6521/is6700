@@ -30,7 +30,7 @@ app.set("views", "views");
 app.use(logRequests);
 
 // Mount express middleware to parse request bodies
-app.use(express.urlencoded({ extened: false }));
+app.use(express.urlencoded({ extended: false }));
 
 // Static Resources
 app.use(express.static(path.join(__dirname, "public")));

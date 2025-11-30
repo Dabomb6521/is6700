@@ -7,6 +7,7 @@ const courseSchema = new Schema({
   title: {
     type: String,
     required: true,
+    maxlength: 50,
     set: function(value) {
       this.slug = slugify(value, {lower: true, trim: true})
       return value
@@ -15,11 +16,17 @@ const courseSchema = new Schema({
   image: {
     type: String,
     required: true,
-    
+    validate: {
+      validator: function(value) {
+        return value.endsWith('.jpg') || value.endsWith('.png');
+      },
+      message: 'Image must end with .jpg or .png'
+    }
   },
   summary: {
     type: String,
-    required: true
+    required: true,
+    maxlength: 350
   },
   description: {
     type: String,
@@ -52,4 +59,6 @@ const courseSchema = new Schema({
   titleSlug: {
     type: String
   }
-})
+});
+
+module.exports = mongoose.model('Course', courseSchema);

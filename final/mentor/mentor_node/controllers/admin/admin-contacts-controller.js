@@ -1,4 +1,4 @@
-const Contact = require("../../models/contact-model");
+const Contact = require("../../models/contact-model-mongoose");
 
 exports.getContacts = async (req, res) => {
   try {

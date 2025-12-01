@@ -1,4 +1,4 @@
-const Event = require("../models/event-model");
+const Event = require("../models/event-model-mongoose");
 
 exports.getAllEvents = (req, res) => {
   Event.find({

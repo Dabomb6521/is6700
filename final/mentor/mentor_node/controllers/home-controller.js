@@ -1,7 +1,7 @@
-const Course = require("../models/course-model");
-const Event = require("../models/event-model");
-const Trainer = require("../models/trainer-model");
-const Testimonial = require("../models/testimonial-model");
+const Course = require("../models/course-model-mongoose");
+const Event = require("../models/event-model-mongoose");
+const Trainer = require("../models/trainer-model-mongoose");
+const Testimonial = require("../models/testimonial-model-mongoose");
 
 exports.getHome = async (req, res) => {
   try {

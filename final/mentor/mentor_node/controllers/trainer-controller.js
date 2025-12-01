@@ -1,4 +1,4 @@
-const Trainer = require('../models/trainer-model');
+const Trainer = require('../models/trainer-model-mongoose');
 
 exports.getAllTrainers = (req, res) => {
     Trainer.find()

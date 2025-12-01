@@ -11,7 +11,7 @@ const eventSchema = new Schema({
     required: true,
   },
   image: {
-    type: Image,
+    type: String,
     required: true,
     validate: {
         validator: function(value) {

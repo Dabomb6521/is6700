@@ -1,68 +1,68 @@
 [
-    {
-        "title": "Quantum Computing Fundamentals",
-        "image": "quantum-computing-course.jpg",
-        "summary": "Master the basics of quantum mechanics and quantum computing in this comprehensive introduction.",
-        "description": "Dive into the fascinating world of quantum computing with Marcus Chen. This course covers quantum bits, superposition, entanglement, and quantum algorithms. Perfect for beginners with a curious mind and basic programming knowledge. By the end, you'll understand how quantum computers work and their potential applications in cryptography, optimization, and simulation.",
-        "price": 299.99,
-        "capacity": 30,
-        "registrants": 18,
-        "likes": 42,
-        "trainer": 1
-    },
-    {
-        "title": "Artisanal Cheese Making Mastery",
-        "image": "artisanal-cheese-course.jpg",
-        "summary": "Learn to craft delicious cheeses from scratch, from fresh mozzarella to aged cheddar.",
-        "description": "Join Sophia Ramirez on a flavorful journey through the art of cheese making. This hands-on course covers milk selection, culturing techniques, aging processes, and troubleshooting common issues. You'll make at least five different cheese varieties and learn the science behind fermentation. Includes all equipment and ingredients. Leave with the skills to start your own cheese-making hobby or business.",
-        "price": 199.99,
-        "capacity": 15,
-        "registrants": 12,
-        "likes": 67,
-        "trainer": 2
-    },
-    {
-        "title": "Competitive Yodeling Techniques",
-        "image": "yodeling-course.jpg",
-        "summary": "Develop your yodeling voice and learn competition-level techniques from a three-time finalist.",
-        "description": "Dmitri Volkov shares his championship yodeling expertise in this unique vocal training course. Learn proper breathing techniques, register transitions, traditional Alpine styles, and modern freestyle approaches. Perfect for singers looking to expand their range or anyone interested in this fascinating vocal art. No prior yodeling experience required, but basic singing ability helpful.",
-        "price": 149.99,
-        "capacity": 20,
-        "registrants": 8,
-        "likes": 34,
-        "trainer": 3
-    },
-    {
-        "title": "Urban Beekeeping for Beginners",
-        "image": "urban-beekeeping-course.jpg",
-        "summary": "Start your own urban apiary and contribute to pollinator conservation in your city.",
-        "description": "Amara Okafor teaches everything you need to know to become a successful urban beekeeper. This practical course covers hive setup, bee biology, seasonal management, honey harvesting, and navigating local regulations. Learn how to maintain healthy colonies in urban environments while helping the bee population thrive. Includes a starter kit and ongoing mentorship access.",
-        "price": 249.99,
-        "capacity": 12,
-        "registrants": 10,
-        "likes": 89,
-        "trainer": 4
-    },
-    {
-        "title": "Underwater Basket Weaving Advanced",
-        "image": "underwater-basket-weaving-course.jpg",
-        "summary": "Take your underwater crafting to the next level with advanced techniques and patterns.",
-        "description": "Kenji Tanaka's advanced course explores complex weaving patterns, exotic materials, and extreme depth challenges. Prerequisites include basic scuba certification and introductory basket weaving skills. Learn to create intricate designs while managing buoyancy and breath control. This meditative practice combines traditional craftsmanship with modern diving technology. All underwater equipment provided.",
-        "price": 399.99,
-        "capacity": 8,
-        "registrants": 5,
-        "likes": 23,
-        "trainer": 5
-    },
-    {
-        "title": "Extreme Ironing Fundamentals",
-        "image": "extreme-ironing-course.jpg",
-        "summary": "Combine household chores with adventure sports in this adrenaline-pumping introduction.",
-        "description": "Isabella Santos introduces you to the world's most extreme domestic activity. Learn basic rock climbing, safety protocols, and ironing techniques that work in challenging environments. Progress from ground-level challenges to cliff-face pressing. This course builds confidence, teaches practical skills, and guarantees memorable experiences. All safety equipment, climbing gear, and ironing supplies included. Medical waiver required.",
-        "price": 179.99,
-        "capacity": 10,
-        "registrants": 7,
-        "likes": 56,
-        "trainer": 6
-    }
+  {
+    "title": "Quantum Computing Fundamentals",
+    "image": "quantum-computing-course.jpg",
+    "summary": "Master the basics of quantum mechanics and quantum computing in this comprehensive introduction.",
+    "description": "Dive into the fascinating world of quantum computing with Marcus Chen. This course covers quantum bits, superposition, entanglement, and quantum algorithms. Perfect for beginners with a curious mind and basic programming knowledge. By the end, you'll understand how quantum computers work and their potential applications in cryptography, optimization, and simulation.",
+    "price": 299.99,
+    "capacity": 30,
+    "registrants": 18,
+    "likes": 42,
+    "trainer": 1
+  },
+  {
+    "title": "Artisanal Cheese Making Mastery",
+    "image": "artisanal-cheese-course.jpg",
+    "summary": "Learn to craft delicious cheeses from scratch, from fresh mozzarella to aged cheddar.",
+    "description": "Join Sophia Ramirez on a flavorful journey through the art of cheese making. This hands-on course covers milk selection, culturing techniques, aging processes, and troubleshooting common issues. You'll make at least five different cheese varieties and learn the science behind fermentation. Includes all equipment and ingredients. Leave with the skills to start your own cheese-making hobby or business.",
+    "price": 199.99,
+    "capacity": 15,
+    "registrants": 12,
+    "likes": 67,
+    "trainer": 2
+  },
+  {
+    "title": "Competitive Yodeling Techniques",
+    "image": "yodeling-course.jpg",
+    "summary": "Develop your yodeling voice and learn competition-level techniques from a three-time finalist.",
+    "description": "Dmitri Volkov shares his championship yodeling expertise in this unique vocal training course. Learn proper breathing techniques, register transitions, traditional Alpine styles, and modern freestyle approaches. Perfect for singers looking to expand their range or anyone interested in this fascinating vocal art. No prior yodeling experience required, but basic singing ability helpful.",
+    "price": 149.99,
+    "capacity": 20,
+    "registrants": 8,
+    "likes": 34,
+    "trainer": 3
+  },
+  {
+    "title": "Urban Beekeeping for Beginners",
+    "image": "urban-beekeeping-course.jpg",
+    "summary": "Start your own urban apiary and contribute to pollinator conservation in your city.",
+    "description": "Amara Okafor teaches everything you need to know to become a successful urban beekeeper. This practical course covers hive setup, bee biology, seasonal management, honey harvesting, and navigating local regulations. Learn how to maintain healthy colonies in urban environments while helping the bee population thrive. Includes a starter kit and ongoing mentorship access.",
+    "price": 249.99,
+    "capacity": 12,
+    "registrants": 10,
+    "likes": 89,
+    "trainer": 4
+  },
+  {
+    "title": "Underwater Basket Weaving Advanced",
+    "image": "underwater-basket-weaving-course.jpg",
+    "summary": "Take your underwater crafting to the next level with advanced techniques and patterns.",
+    "description": "Kenji Tanaka's advanced course explores complex weaving patterns, exotic materials, and extreme depth challenges. Prerequisites include basic scuba certification and introductory basket weaving skills. Learn to create intricate designs while managing buoyancy and breath control. This meditative practice combines traditional craftsmanship with modern diving technology. All underwater equipment provided.",
+    "price": 399.99,
+    "capacity": 8,
+    "registrants": 5,
+    "likes": 23,
+    "trainer": 5
+  },
+  {
+    "title": "Extreme Ironing Fundamentals",
+    "image": "extreme-ironing-course.jpg",
+    "summary": "Combine household chores with adventure sports in this adrenaline-pumping introduction.",
+    "description": "Isabella Santos introduces you to the world's most extreme domestic activity. Learn basic rock climbing, safety protocols, and ironing techniques that work in challenging environments. Progress from ground-level challenges to cliff-face pressing. This course builds confidence, teaches practical skills, and guarantees memorable experiences. All safety equipment, climbing gear, and ironing supplies included. Medical waiver required.",
+    "price": 179.99,
+    "capacity": 10,
+    "registrants": 7,
+    "likes": 56,
+    "trainer": 6
+  }
 ]

@@ -1,14 +1,16 @@
-const Course = require('../models/course-model');
-const Trainer = require('../models/trainer-model');
+const Course = require('../models/course-model-mongoose');
+const Trainer = require('../models/trainer-model-mongoose');
 
 exports.getAllCourses = (req, res) => {
     Course.find()
     .populate('trainer')
     .then(courses => {
+        console.log('Courses: ', courses);
+        console.log('First course:', courses[0]);
         res.render('courses', {
             title: 'Courses',
             courses: courses
-        })
+        });
     })
     .catch((err) => console.error(err));
 };

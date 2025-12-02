@@ -5,6 +5,9 @@ const expressLayouts = require("express-ejs-layouts");
 const morgan = require("morgan");
 const mongoose = require('mongoose');
 require("dotenv").config();
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const flash = require('connect-flash');
 
 // Import Routes
 const homeRoutes = require("./routes/home-routes");
@@ -13,9 +16,19 @@ const eventRoutes = require("./routes/event-routes");
 const courseRoutes = require("./routes/course-routes");
 const contactRoutes = require("./routes/contact-routes");
 const adminRoutes = require("./routes/admin/admin-routes");
+const userRoutes = require('./routes/user-routes');
+
+// Database connection string
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Import Logging Middleware
 const logRequests = require("./middleware");
+
+// Initialize session store
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: 'sessions'
+})
 
 // Initialize the express app
 const app = express();
@@ -38,8 +51,32 @@ app.use(express.static(path.join(__dirname, "public")));
 // Use expressLayouts package
 app.use(expressLayouts);
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+    cookie: {
+      maxAge: 1000 * 60 * 60,
+      sameSite: true
+    }
+  })
+);
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  console.log('Session user: ', req.session.user);
+  res.locals.user = req.session.user || null;
+  res.locals.flashMessages = req.flash();
+
+  next();
+})
+
 //  Register Routes
 app.use("/", homeRoutes);
+app.use("/user", userRoutes);
 app.use("/trainers", trainerRoutes);
 app.use("/events", eventRoutes);
 app.use("/courses", courseRoutes);
@@ -48,7 +85,7 @@ app.use("/admin", adminRoutes);
 
 // Start the app using mongoose
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(MONGODB_URI)
   .then(() => {
     console.log("Mongoose Connected!");
     app.listen(process.env.PORT || 3000);

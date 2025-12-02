@@ -57,16 +57,53 @@
                     <li><a href="/trainers" class="<%= title === 'Our Trainers' ? 'active' : '' %>">Trainers</a></li>
                     <li><a href="/events" class="<%= title === 'Events' ? 'active' : '' %>">Events</a></li>
                     <li><a href="/contact/new" class="<%= title === 'Contact' ? 'active' : '' %>">Contact</a></li>
-                    <li><a href="/admin/contacts" class="<%= title === 'Contact Requests' ? 'active' : '' %>">Admin</a></li>
+                    <li><a href="/admin/contacts" class="<%= title === 'Contact Requests' ? 'active' : '' %>">Admin</a>
+                    </li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="/login">Login/Signup</a>
+            <% if (user) { %>
+                <a class="btn-getstarted" href="/user/logout">Logout</a>
+                <% } else { %>
+                    <a class="btn-getstarted" href="/user/login">Login/Signup</a>
+                    <% } %>
         </div>
     </header>
 
     <main class="main">
+
+        <!-- Flash Message Toast Container -->
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1050">
+                <% if (flashMessages.success) { %>
+                    <div class="toast align-items-center text-white bg-success border-0 show" role="alert"
+                        aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <%= flashMessages.success %>
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <% } %>
+                        <% if (flashMessages.error) { %>
+                            <div class="toast align-items-center text-white bg-danger border-0 show" role="alert"
+                                aria-live="assertive" aria-atomic="true">
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                        <%= flashMessages.error %>
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                                        data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                            </div>
+                            <% } %>
+            </div>
+        </div>
+
+        <!-- Flash Message Toast Container End -->
 
         <%- body %>
 

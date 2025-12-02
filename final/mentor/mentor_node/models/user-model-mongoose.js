@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
+
 
 const userSchema = new Schema({
   firstName: {
@@ -23,6 +25,42 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: [true, "Please provide your password"],
+    minLength: [6, "Password must be at least 6 characters"]
+  },
+  roles: {
+    type: [String],
+    enum: ["user", "admin"],
+    default: ["user"],
+    validate: {
+      validator: function (roles) {
+        return roles.every(role => ["user", "admin"].includes(role)); // Ensures only valid roles are used
+      },
+      message: (props) => `Invalid role(s): ${props.value.join(", ")}. Allowed roles are: user, admin.`
+    }
+  },
+  courses: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Course'
+  }]
+});
+
+userSchema.pre('save', async function () {
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 12);
   }
-})
+});
+
+// Check to see if passowrd matches
+userSchema.methods.validatePassword = function (enteredPassword) {
+  return bcrypt.compare(enteredPassword, this.password);
+};
+
+// Check to see if email is unique
+userSchema.statics.checkEmailUnique = async function (email) {
+  const user = await this.findOne({email: email});
+
+  return !Boolean(user);
+}
+
+module.exports = mongoose.model("User", userSchema, 'users');

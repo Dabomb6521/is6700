@@ -1,9 +1,7 @@
 const Event = require("../models/event-model-mongoose");
 
 exports.getAllEvents = (req, res) => {
-  Event.find({
-    order: [["date", "ASC"]],
-  })
+  Event.find()
     .sort({ date: 1 })
     .then((events) => {
       res.render("events", {

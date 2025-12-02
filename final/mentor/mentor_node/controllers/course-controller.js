@@ -5,8 +5,6 @@ exports.getAllCourses = (req, res) => {
     Course.find()
     .populate('trainer')
     .then(courses => {
-        console.log('Courses: ', courses);
-        console.log('First course:', courses[0]);
         res.render('courses', {
             title: 'Courses',
             courses: courses

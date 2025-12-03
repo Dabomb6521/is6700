@@ -9,7 +9,7 @@ const courseSchema = new Schema({
     required: true,
     maxlength: 50,
     set: function (value) {
-      this.slug = slugify(value, { lower: true, trim: true });
+      this.titleSlug = slugify(value, { lower: true, trim: true });
       return value;
     },
   },

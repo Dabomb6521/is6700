@@ -52,6 +52,22 @@
                 &nbsp;&nbsp; <i class="bi bi-heart heart-icon"></i>&nbsp;<%= course.likes %></div>
             </div>
           </div>
+          <!-- Registration Button -->
+          <div class = "mt-3 text-center">
+            <% 
+              const isFull = course.registrants.length >= course.capacity;
+              const isRegistered = user && course.registrants.some(id => id.toString() === user._id.toString());
+            %>
+            <% if (isFull && !isRegistered) { %>
+             <button class="btn btn-secondary" disabled>Course Full</button>
+            <% } else if (isRegistered) { %>
+             <form action="/courses/unregister/<%= course._id %>" method="post" style="display: inline;">
+              <button type="submit" class="btn btn-warning">Unregister</button>
+             </form>
+             <% } else { %>
+              <a href="/courses/register/<%= course._id %>" class="btn btn-primary">Register</a>
+              <% } %>
+          </div>
         </div>
       </div>
       <% }) %>

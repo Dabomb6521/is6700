@@ -6,30 +6,30 @@ services:
     command: sleep infinity
     working_dir: /workspace
     network_mode: service:db
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
 
-  db:
-    image: mysql:8.0
-    restart: unless-stopped
-    command: --sql-mode="ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-# Don't retain data when stopping container. Uncomment below to retain data
-#       - mysql-data:/var/lib/mysql
+#   db:
+#     image: mysql:8.0
+#     restart: unless-stopped
+#     command: --sql-mode="ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+#     environment:
+#       MYSQL_ROOT_PASSWORD: rootpassword
+#     volumes:
+#       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+# # Don't retain data when stopping container. Uncomment below to retain data
+# #       - mysql-data:/var/lib/mysql
 
-# volumes:
-#   mysql-data:
-  phpmyadmin:
-    image: phpmyadmin:latest
-    restart: unless-stopped
-    environment:
-      PMA_HOST: db
-      PMA_USER: devuser
-      PMA_PASSWORD: devpassword
-    ports:
-      - "8081:80"
-    depends_on:
-      - db
+# # volumes:
+# #   mysql-data:
+#   phpmyadmin:
+#     image: phpmyadmin:latest
+#     restart: unless-stopped
+#     environment:
+#       PMA_HOST: db
+#       PMA_USER: devuser
+#       PMA_PASSWORD: devpassword
+#     ports:
+#       - "8081:80"
+#     depends_on:
+#       - db

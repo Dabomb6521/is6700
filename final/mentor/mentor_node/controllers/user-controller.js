@@ -70,7 +70,7 @@ exports.postSignup = async (req, res, next) => {
       res.redirect("/");
     });
   } catch (err) {
-    console.log(err);
+    console.log("Post Signup error: ", err);
     res.render("auth/signup", {
       title: "Signup",
       entries: req.body,

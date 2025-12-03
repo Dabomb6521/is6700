@@ -6,7 +6,7 @@ const slugify = require("slugify");
 const courseSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, "Title is required"],
     maxlength: 50,
     set: function (value) {
       this.titleSlug = slugify(value, { lower: true, trim: true });
@@ -15,30 +15,36 @@ const courseSchema = new Schema({
   },
   image: {
     type: String,
-    required: true,
+    required: [true, "Image is required"],
     validate: {
       validator: function (value) {
-        return value.endsWith(".jpg") || value.endsWith(".png");
+        return (
+          value.endsWith(".jpg") ||
+          value.endsWith(".png") ||
+          value.endsWith(".jpeg")
+        );
       },
-      message: "Image must end with .jpg or .png",
+      message: "Image must end with .jpg, .jpeg or .png",
     },
   },
   summary: {
     type: String,
-    required: true,
-    maxlength: 350,
+    required: [true, "Summary is required"],
+    maxlength: [350, "Summary cannot exceed 350 characters"],
   },
   description: {
     type: String,
-    required: true,
+    required: [true, "Description is required"],
   },
   price: {
     type: Number,
-    required: true,
+    required: [true, "Price is required"],
+    min: [0, "Price must be a positive number"],
   },
   capacity: {
     type: Number,
-    required: true,
+    required: [true, "Capacity is required"],
+    min: [1, "Capacity must be at least 1"],
   },
   registrants: [
     {
@@ -49,16 +55,18 @@ const courseSchema = new Schema({
   likes: {
     type: Number,
     default: 0,
+    min: 0,
   },
   trainer: [
     {
       type: Schema.Types.ObjectId,
       ref: "Trainer",
-      required: true,
+      required: [true, "Trainer is required"],
     },
   ],
   schedule: {
     type: String,
+    default: "TBD",
   },
   titleSlug: {
     type: String,

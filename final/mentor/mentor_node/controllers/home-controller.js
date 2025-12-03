@@ -21,6 +21,8 @@ exports.getHome = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
+    const customError = new Error("Unable to site, Try again later");
+    next(customError);
   }
 };
 

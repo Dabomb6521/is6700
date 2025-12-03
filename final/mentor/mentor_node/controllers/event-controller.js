@@ -9,5 +9,9 @@ exports.getAllEvents = (req, res) => {
         events: events,
       });
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      const customError = new Error("Unable to load Events, Try again later");
+      next(customError);
+    });
 };

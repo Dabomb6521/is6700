@@ -3,11 +3,12 @@ const ejs = require("ejs");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const morgan = require("morgan");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 require("dotenv").config();
-const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
-const flash = require('connect-flash');
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
+const flash = require("connect-flash");
+const fileUpload = require("express-fileupload");
 
 // Import Routes
 const homeRoutes = require("./routes/home-routes");
@@ -16,7 +17,10 @@ const eventRoutes = require("./routes/event-routes");
 const courseRoutes = require("./routes/course-routes");
 const contactRoutes = require("./routes/contact-routes");
 const adminRoutes = require("./routes/admin/admin-routes");
-const userRoutes = require('./routes/user-routes');
+const userRoutes = require("./routes/user-routes");
+
+// Import Error Controller
+const errorController = require('./controllers/error/error-controller');
 
 // Database connection string
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -27,8 +31,8 @@ const logRequests = require("./middleware");
 // Initialize session store
 const store = new MongoDBStore({
   uri: MONGODB_URI,
-  collection: 'sessions'
-})
+  collection: "sessions",
+});
 
 // Initialize the express app
 const app = express();
@@ -59,19 +63,21 @@ app.use(
     store: store,
     cookie: {
       maxAge: 1000 * 60 * 60,
-      sameSite: true
-    }
+      sameSite: true,
+    },
   })
 );
 
 app.use(flash());
+
+app.use(fileUpload());
 
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   res.locals.flashMessages = req.flash();
 
   next();
-})
+});
 
 //  Register Routes
 app.use("/", homeRoutes);
@@ -81,6 +87,9 @@ app.use("/events", eventRoutes);
 app.use("/courses", courseRoutes);
 app.use("/contact", contactRoutes);
 app.use("/admin", adminRoutes);
+
+app.use(errorController.get404);
+app.use(errorController.get500);
 
 // Start the app using mongoose
 mongoose

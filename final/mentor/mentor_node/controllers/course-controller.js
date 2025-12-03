@@ -2,7 +2,7 @@ const Course = require("../models/course-model-mongoose");
 const Trainer = require("../models/trainer-model-mongoose");
 const User = require("../models/user-model-mongoose");
 
-exports.getAllCourses = (req, res) => {
+exports.getAllCourses = (req, res, next) => {
   Course.find()
     .populate("trainer")
     .then((courses) => {
@@ -11,7 +11,11 @@ exports.getAllCourses = (req, res) => {
         courses: courses,
       });
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      const customError = new Error("Unable to load courses, try again later");
+      next(customError);
+    });
 };
 
 exports.getCourseDesc = (req, res, next) => {
@@ -26,7 +30,11 @@ exports.getCourseDesc = (req, res, next) => {
         res.render("course-details", { title: "Course Details", course });
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      const customError = new Error("Unable to load course details, try again later")
+      next(customError);
+    });
 };
 
 exports.getRegistration = async (req, res) => {

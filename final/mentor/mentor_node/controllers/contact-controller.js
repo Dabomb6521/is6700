@@ -4,13 +4,13 @@ exports.getContact = (req, res) => {
   res.render("contact", { title: "Contact", message: "" });
 };
 
-exports.postContact = (req, res) => {
+exports.postContact = (req, res, next) => {
   console.log("Request body is: ", req.body);
 
   Contact.create({
     name: req.body.name,
     email: req.body.email,
-    subject: req.body.subject,
+    subjects: req.body.subject,
     message: req.body.message,
     postDate: new Date(),
   })
@@ -20,10 +20,8 @@ exports.postContact = (req, res) => {
     })
     .catch((err) => {
       console.error("Full Error: ", err);
-      res.render("contact", {
-        title: "Contact",
-        message: "Oops, something went wrong. Please try again later.",
-      });
+      const customError = new Error('Unable to post response to contact request. Please Try again later');
+      next(customError);
     });
 };
 

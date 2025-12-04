@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const ejs = require("ejs");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-require("dotenv").config();
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
@@ -18,6 +18,7 @@ const courseRoutes = require("./routes/course-routes");
 const contactRoutes = require("./routes/contact-routes");
 const adminRoutes = require("./routes/admin/admin-routes");
 const userRoutes = require("./routes/user-routes");
+const apiRoutes = require('./routes/api/api-routes');
 
 // Import Error Controller
 const errorController = require('./controllers/error/error-controller');
@@ -87,6 +88,7 @@ app.use("/events", eventRoutes);
 app.use("/courses", courseRoutes);
 app.use("/contact", contactRoutes);
 app.use("/admin", adminRoutes);
+app.use('/api', apiRoutes);
 
 app.use(errorController.get404);
 app.use(errorController.get500);

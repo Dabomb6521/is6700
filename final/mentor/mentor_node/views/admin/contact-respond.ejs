@@ -1,0 +1,114 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Respond to Contact Requests</h1>
+          <p class="mb-0">Select a contact to respond to</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin/contacts">All Contacts</a></li>
+        <li class="current">Respond</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<section class="section">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12">
+        <a href="/admin/contacts" class="btn btn-secondary">← Back to All Contacts</a>
+      </div>
+    </div>
+
+    <!-- Unanswered Contacts List -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Unanswered Contacts</h3>
+        <% if (contacts.length === 0) { %>
+          <div class="alert alert-success">
+            <p class="mb-0">✓ All contact requests have been answered!</p>
+          </div>
+        <% } else { %>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Subject</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% contacts.forEach(contact => { %>
+                  <tr>
+                    <td><%= new Date(contact.postDate).toLocaleDateString() %></td>
+                    <td><%= contact.name %></td>
+                    <td><%= contact.email %></td>
+                    <td><%= contact.subject %></td>
+                    <td>
+                      <form action="/admin/contacts/respond" method="post" style="display: inline;">
+                        <input type="hidden" name="contactId" value="<%= contact._id %>" />
+                        <button type="submit" class="btn btn-sm btn-primary">Select</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Response Form (only shows when contact is selected) -->
+    <% if (locals.selectedContact) { %>
+    <div class="row mt-5">
+      <div class="col-lg-12">
+        <h3>Respond to Selected Contact</h3>
+        
+        <!-- Display Selected Contact Info -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5>Contact Information</h5>
+          </div>
+          <div class="card-body">
+            <p><strong>From:</strong> <%= selectedContact.name %> (<%= selectedContact.email %>)</p>
+            <p><strong>Date:</strong> <%= new Date(selectedContact.postDate).toLocaleDateString() %></p>
+            <p><strong>Subject:</strong> <%= selectedContact.subject %></p>
+            <p><strong>Message:</strong></p>
+            <p><%= selectedContact.message %></p>
+          </div>
+        </div>
+
+        <!-- Response Form -->
+        <form action="/admin/contacts/respond/submit" method="post" class="php-email-form">
+          <input type="hidden" name="id" value="<%= selectedContact._id %>" />
+          
+          <div class="row gy-4">
+            <div class="col-md-12">
+              <label for="response">Your Response *</label>
+              <textarea class="form-control" name="response" id="response" rows="8" placeholder="Enter your response..." required></textarea>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary">Send Response</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</section>

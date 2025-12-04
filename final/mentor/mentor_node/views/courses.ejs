@@ -31,47 +31,60 @@
 <section id="courses" class="courses section">
   <div class="container">
     <div class="row">
-      <% courses.forEach((course) => { %>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-        <div class="course-item">
-          <img src="/assets/img/<%= course.image %>" class="img-fluid" alt="..." />
-          <div class="course-content">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <p class="category">Web Development</p>
-              <p class="price">$<%= course.price %></p>
-            </div>
-
-            <h3><a href="/courses/<%= course.titleSlug %>"><%= course.title %></a></h3>
-            <p class="description"><%= course.summary %></p>
-            <div class="trainer d-flex justify-content-between align-items-center">
-              <div class="trainer-profile d-flex align-items-center">
-                <img src="/assets/img/trainers/<%= course.trainer.image %>" class="img-fluid" alt="" />
-                <a href="" class="trainer-link"><%= course.trainer.name %></a>
+      <% courses.forEach((course)=> { %>
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="course-item">
+            <img src="/assets/img/<%= course.image %>" class="img-fluid" alt="..." />
+            <div class="course-content">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <p class="category">Web Development</p>
+                <p class="price">$<%= course.price %>
+                </p>
               </div>
-              <div class="trainer-rank d-flex align-items-center"><i class="bi bi-person user-icon"></i>&nbsp;<%= course.registrants.length %>
-                &nbsp;&nbsp; <i class="bi bi-heart heart-icon"></i>&nbsp;<%= course.likes %></div>
+
+              <h3><a href="/courses/<%= course.titleSlug %>">
+                  <%= course.title %>
+                </a></h3>
+              <p class="description">
+                <%= course.summary %>
+              </p>
+              <div class="trainer d-flex justify-content-between align-items-center">
+                <div class="trainer-profile d-flex align-items-center">
+                  <img src="/assets/img/trainers/<%= course.trainer.image %>" class="img-fluid" alt="" />
+                  <a href="" class="trainer-link">
+                    <%= course.trainer.name %>
+                  </a>
+                </div>
+                <div class="trainer-rank d-flex align-items-center"><i class="bi bi-person user-icon"></i>&nbsp;<%=
+                    course.registrants.length %>
+                    &nbsp;&nbsp; <i class="bi bi-heart heart-icon"></i>&nbsp;<%= course.likes %>
+                </div>
+              </div>
             </div>
-          </div>
-          <!-- Registration Button -->
-          <div class = "mt-3 text-center">
-            <% 
-              const isFull = course.registrants.length >= course.capacity;
-              const isRegistered = user && course.registrants.some(id => id.toString() === user._id.toString());
-            %>
-            <% if (isFull && !isRegistered) { %>
-             <button class="btn btn-secondary" disabled>Course Full</button>
-            <% } else if (isRegistered) { %>
-             <form action="/courses/unregister/<%= course._id %>" method="post" style="display: inline;">
-              <button type="submit" class="btn btn-warning">Unregister</button>
-             </form>
-             <% } else { %>
-              <a href="/courses/register/<%= course._id %>" class="btn btn-primary">Register</a>
-              <% } %>
+            <!-- Registration Button -->
+            <div class="mt-3 text-center">
+              <% const isFull=course.registrants.length>= course.capacity;
+                const isRegistered = user && course.registrants.some(id => id.toString() === user._id.toString());
+                %>
+                <% if (isFull && !isRegistered) { %>
+                  <button class="btn btn-secondary" disabled>Course Full</button>
+                  <% } else if (isRegistered) { %>
+                    <form action="/courses/unregister/<%= course._id %>" method="post" style="display: inline;">
+                      <button type="submit" class="btn btn-warning">Unregister</button>
+                    </form>
+                    <% } else { %>
+                      <a href="/courses/register/<%= course._id %>" class="btn btn-primary">Register</a>
+                      <% } %>
+
+                <!-- Admin Edit -->
+                <% if (user && user.roles && user.roles.includes('admin')) { %>
+                 <a href="/admin/courses/edit/<%= course._id %>" class="btn btn-info">Edit/Delete</a>
+                <% } %>
+            </div>
           </div>
         </div>
-      </div>
-      <% }) %>
-      <!-- End Course Item-->
+        <% }) %>
+          <!-- End Course Item-->
     </div>
   </div>
 </section>

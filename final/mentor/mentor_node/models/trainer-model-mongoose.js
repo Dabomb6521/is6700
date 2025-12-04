@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const Trainer = require('./trainer-model');
-
 const Schema = mongoose.Schema;
 
 const trainerSchema = new Schema({

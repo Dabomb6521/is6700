@@ -56,6 +56,11 @@
               <% } else { %>
                 <a href="/courses/register/<%= course._id %>" class="btn btn-primary btn-lg">Register</a>
                 <% } %>
+
+          <!-- Admin Edit Button -->
+           <% if (user && user.roles && user.roles.includes('admin')) { %>
+            <a href="/admin/courses/edit/<%= course._id %>" class="btn btn-info btn-lg mt-2">Edit/Delete Course</a>
+           <% } %>
       </div>
       <div class="col-lg-4">
         <div class="course-info d-flex justify-content-between align-items-center">

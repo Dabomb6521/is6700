@@ -57,13 +57,12 @@ const courseSchema = new Schema({
     default: 0,
     min: 0,
   },
-  trainer: [
+  trainer: 
     {
       type: Schema.Types.ObjectId,
       ref: "Trainer",
       required: [true, "Trainer is required"],
     },
-  ],
   schedule: {
     type: String,
     default: "TBD",

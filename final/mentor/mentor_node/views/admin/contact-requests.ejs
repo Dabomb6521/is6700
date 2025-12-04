@@ -14,7 +14,7 @@
     <div class="container">
       <ol>
         <li><a href="/">Home</a></li>
-        <li class="current">Admin - Contacts</li>
+        <li class="current">Contact Requests</li>
       </ol>
     </div>
   </nav>
@@ -24,6 +24,12 @@
 <!-- Contact Requests Section -->
 <section class="section">
   <div class="container">
+    <div class="row mb-4">
+      <div class="col-12 text-end">
+        <a href="/admin/contacts/respond" class="btn btn-primary">Respond to Contacts</a>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-12">
         <% if (contacts.length === 0) { %>

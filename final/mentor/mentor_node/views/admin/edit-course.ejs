@@ -1,0 +1,119 @@
+<!-- Page Title -->
+<div class="page-title" data-aos="fade">
+  <div class="heading">
+    <div class="container">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1>Edit Course</h1>
+          <p class="mb-0">Update course information</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+        <li class="current">Edit Course</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<!-- End Page Title -->
+
+<!-- Edit Course Section -->
+<section id="contact" class="contact section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
+      <div class="col-lg-12">
+        <form action="/admin/courses/edit/<%= course._id %>" method="post" enctype="multipart/form-data"
+          class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+          <div class="row gy-4">
+
+            <!-- Course Title -->
+            <div class="col-md-12">
+              <label for="title">Course Title *</label>
+              <input type="text" class="form-control" name="title" id="title" value="<%= course.title %>" required
+                maxlength="50" />
+            </div>
+
+            <!-- Course Summary -->
+            <div class="col-md-12">
+              <label for="summary">Summary *</label>
+              <textarea class="form-control" name="summary" id="summary" rows="3" required
+                maxlength="350"><%= course.summary %></textarea>
+            </div>
+
+            <!-- Course Description -->
+            <div class="col-md-12">
+              <label for="description">Description *</label>
+              <textarea class="form-control" name="description" id="description" rows="6"
+                required><%= course.description %></textarea>
+            </div>
+
+            <!-- Price -->
+            <div class="col-md-6">
+              <label for="price">Price ($) *</label>
+              <input type="number" class="form-control" name="price" id="price" value="<%= course.price %>" step="0.01"
+                min="0" required />
+            </div>
+
+            <!-- Capacity -->
+            <div class="col-md-6">
+              <label for="capacity">Capacity *</label>
+              <input type="number" class="form-control" name="capacity" id="capacity" value="<%= course.capacity %>"
+                min="1" required />
+            </div>
+
+            <!-- Trainer Dropdown -->
+            <div class="col-md-12">
+              <label for="trainer">Trainer *</label>
+              <select class="form-control" name="trainer" id="trainer" required>
+                <% trainers.forEach(trainer=> { %>
+                  <option value="<%= trainer._id %>"
+                    <%= course.trainer.toString() === trainer._id.toString() ? 'selected' : '' %>>
+                    <%= trainer.name %>
+                  </option>
+                  <% }) %>
+              </select>
+            </div>
+
+            <!-- Current Image Display -->
+            <div class="col-md-12">
+              <label>Current Image</label>
+              <div class="mb-2">
+                <img src="/assets/img/<%= course.image %>" alt="<%= course.title %>"
+                  style="max-width: 300px; height: auto;" class="img-thumbnail" />
+              </div>
+            </div>
+
+            <!-- Image Upload (Optional) -->
+            <div class="col-md-12">
+              <label for="image">Replace Image (optional - jpg, jpeg, or png)</label>
+              <input type="file" class="form-control" name="image" id="image" accept=".jpg,.jpeg,.png" />
+              <small class="form-text text-muted">Leave empty to keep current image</small>
+            </div>
+
+            <!-- Submit and Delete Buttons -->
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary">Update Course</button>
+              <a href="/courses" class="btn btn-secondary">Cancel</a>
+            </div>
+          </div>
+        </form>
+
+        <!-- Delete Course Form (Separate form) -->
+        <div class="row mt-4">
+          <div class="col-md-12 text-center">
+            <form action="/admin/courses/delete/<%= course._id %>" method="post"
+              onsubmit="return confirm('Are you sure you want to delete this course? This action cannot be undone.');">
+              <button type="submit" class="btn btn-danger">Delete Course</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Edit Course Section -->

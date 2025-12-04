@@ -7,6 +7,6 @@ router.get('/token', apiController.getToken);
 // Protected Routes
 router.use(apiController.verifyToken);
 
-router.get('/courses', apiController.getCourses);
+router.get('/courses', apiController.getCourses, apiController.renderJson);
 
 module.exports = router;

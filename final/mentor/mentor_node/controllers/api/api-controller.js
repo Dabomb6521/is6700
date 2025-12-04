@@ -99,3 +99,7 @@ exports.getCourses = async (req, res, next) => {
     next(new Error("Failed to retrieve Courses"));
   }
 }
+
+exports.renderJson = (req, res) => {
+  res.json(res.locals.data);
+}

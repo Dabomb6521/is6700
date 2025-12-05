@@ -139,7 +139,7 @@
                       <a href="<%= request.spotifyUrl %>" target="_blank" class="btn btn-sm btn-success">
                         <i class="bi bi-spotify"></i>
                       </a>
-                      <% if (user && request.requestedBy && user._id.toString() === request.requestedBy._id.toString() || (user.roles && user.roles.includes('admin'))) { %>
+                      <% if (user && ((request.requestedBy && user._id.toString() === request.requestedBy._id.toString()) || (user.roles && user.roles.includes('admin')))) { %>
                         <form action="/externalapi/request/remove/<%= request._id %>" method="post" style="display: inline;">
                           <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remove this song request?')">
                             <i class="bi bi-trash"></i>

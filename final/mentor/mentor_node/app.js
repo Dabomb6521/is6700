@@ -19,6 +19,7 @@ const contactRoutes = require("./routes/contact-routes");
 const adminRoutes = require("./routes/admin/admin-routes");
 const userRoutes = require("./routes/user-routes");
 const apiRoutes = require('./routes/api/api-routes');
+externalApiRoutes = require('./routes/api/external-api-routes');
 
 // Import Error Controller
 const errorController = require('./controllers/error/error-controller');
@@ -89,6 +90,7 @@ app.use("/courses", courseRoutes);
 app.use("/contact", contactRoutes);
 app.use("/admin", adminRoutes);
 app.use('/api', apiRoutes);
+app.use('/externalapi', externalApiRoutes);
 
 app.use(errorController.get404);
 app.use(errorController.get500);

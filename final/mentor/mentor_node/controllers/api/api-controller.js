@@ -1,32 +1,30 @@
-const jwt = require('jsonwebtoken');
-const Course = require('../../models/course-model-mongoose');
+const jwt = require("jsonwebtoken");
+const Course = require("../../models/course-model-mongoose");
 
 exports.getToken = (req, res, next) => {
-
   try {
     // const {user, passwordsMatch} = res.local;
-  
+
     // if (!user || !passwordsMatch) {
     //   const error = new Error("Not Authenticated.");
     //   error.statusCode = 401;
     //   return next(error);
     // }
-  
+
     const token = jwt.sign(
       // {email: user.email, userId: user._id.toString()},
-      {data: 'api-access'},
+      { data: "api-access" },
       process.env.JWT_SECRET,
-      {expiresIn: '1h'}
+      { expiresIn: "1h" }
     );
-  
+
     res.status(200).json({
       message: "Token Generated.",
-      data: {token}
+      data: { token },
     });
-    
   } catch (error) {
-    console.error('Token generation error: ', error);
-    res.status(500).json({error: 'Unable to generate token'});
+    console.error("Token generation error: ", error);
+    res.status(500).json({ error: "Unable to generate token" });
   }
 };
 
@@ -52,15 +50,15 @@ exports.verifyToken = (req, res, next) => {
   } catch (error) {
     console.error(error);
 
-    if (error.name === 'TokenExpiredError') {
+    if (error.name === "TokenExpiredError") {
       error.statusCode = 401;
-      error.message = 'Token has expired.';
-    } else if (error.name === 'JsonWebTokenError') {
+      error.message = "Token has expired.";
+    } else if (error.name === "JsonWebTokenError") {
       error.statusCode = 401;
-      error.message = 'Invalid token.';
+      error.message = "Invalid token.";
     }
 
-    if(!error.statusCode) {
+    if (!error.statusCode) {
       error.statusCode = 500;
       error.message = error.message || "Server Error";
     }
@@ -70,9 +68,14 @@ exports.verifyToken = (req, res, next) => {
 
 exports.getCourses = async (req, res, next) => {
   try {
-    const courses = await Course.find().populate('trainer', 'name').select('-registrants').lean();
+    const cours = await NonExistentModel.find();
 
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const courses = await Course.find()
+      .populate("trainer", "name")
+      .select("-registrants")
+      .lean();
+
+    const baseUrl = `${req.protocol}://${req.get("host")}`;
 
     const sanitized = courses.map((course) => ({
       _id: course._id,
@@ -86,20 +89,30 @@ exports.getCourses = async (req, res, next) => {
       schedule: course.schedule,
       trainer: {
         _id: course.trainer._id,
-        name: course.trainer.name
+        name: course.trainer.name,
       },
-      imageUrl: `${baseUrl}/assets/img/${course.image}`
+      imageUrl: `${baseUrl}/assets/img/${course.image}`,
     }));
 
     res.locals.data = sanitized;
     return next();
-
   } catch (error) {
-    console.error('Error is: ', error);
+    console.error("Error is: ", error);
     next(new Error("Failed to retrieve Courses"));
   }
-}
+};
 
-exports.renderJson = (req, res) => {
-  res.json(res.locals.data);
-}
+exports.sendResponse = (req, res) => {
+  res.status(200).json({
+    message: "Success!",
+    data: res.locals.data,
+  });
+};
+
+exports.errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    message: `Error! ${err.message}`,
+    data: null,
+  });
+};

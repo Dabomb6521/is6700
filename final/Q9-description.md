@@ -1,0 +1,9 @@
+# Implement Email Notifications
+
+For the final I decided that I wanted to try and implement the email notification system that is provided by the nodemailer package. I did this because I felt like it was something I would implement in a application later on.
+
+I decided to create a file called email-config.js in the utils folder which would hold the code for the transporter. This code will call the createTransport function and is where I configure the host. I decided to use Ethereal which is recommended by the nodemailer package. It is a fake SMTP service that allowes me to test the process of what it would be like when implemented in production. After completing the email-config.js file I called the transporter in the admin-contacts-controller.js postContactResponse function and course-controller.js postRegistration function so that after these are completed they send either the original contact an update about a response or a confirmation email after registering for a course. I felt like these two locations made the most sense to implement an example of where this functionality could be used.
+
+I found that it was relitvely straight forward on how to configure nodemailer and send the emails curated to the situation that they are being sent in. I did struggle a bit with getting the credentials to apply. I am not sure what fixed it as I added the code to verify the transport and make sure the connection works, which from what I understand isn't needed and then everything started working. I then removed the verify function and everything has been working since.
+
+I feel like in the future I could add this to anywhere there is interaction from the client in where they are subitting forums or they are unregistering from courses. I feel like that would make the application feel much more completed.

@@ -1,6 +1,8 @@
 const Course = require("../models/course-model-mongoose");
 const Trainer = require("../models/trainer-model-mongoose");
 const User = require("../models/user-model-mongoose");
+const nodemailer = require('nodemailer');
+const transporter = require('../util/email-config');
 
 exports.getAllCourses = (req, res, next) => {
   Course.find()
@@ -48,6 +50,7 @@ exports.getRegistration = async (req, res) => {
       selectedCourseId: courseId,
       user: req.session.user,
     });
+
   } catch (error) {
     console.error(error);
     req.flash("error", "Error loading registration form");
@@ -80,6 +83,25 @@ exports.postRegistration = async (req, res, next) => {
     await User.findByIdAndUpdate(userId, {
       $push: { courses: courseId },
     });
+
+    // Send Confirmation Email
+    const info = await transporter.sendMail({
+      from: '"Mentor Training" <noreply@mentor.com>',
+      to: req.session.user.email,
+      subject: `Course Registration Confirmation - ${course.title}`,
+      html: `
+      <div style="font-family: Arial, sans-serif;">
+          <h2 style="color: #5fcf80;">Registration Confirmed!</h2>
+          <p>Dear ${req.session.user.firstName},</p>
+          <p>You have successfully registered for <strong>${course.title}</strong></p>
+          <p>Price: $${course.price}</p>
+          <p>We look forward to seeing you in class!</p>
+        </div>
+      `
+    })
+
+    console.log('Registration email sent: ', info.messageId);
+    console.log('Preview URL: ', nodemailer.getTestMessageUrl(info));
 
     req.flash("success", `Successfully registered for ${course.title}`);
     res.redirect("/courses");

@@ -1,4 +1,6 @@
 const Contact = require("../../models/contact-model-mongoose");
+const nodemailer = require("nodemailer");
+const transporter = require("../../util/email-config");
 
 exports.getContacts = async (req, res, next) => {
   try {
@@ -58,9 +60,39 @@ exports.postContactResponse = async (req, res, next) => {
       { $set: { response: response, responseDate: new Date() } },
       { new: true }
     );
+
+    // Send Email
+    const info = await transporter.sendMail({
+      from: '"Mentor Training" <noreply@mentor.com>',
+      to: result.email,
+      subject: `Response to your inquiry: ${result.subject}`,
+      html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #5fcf80;">Mentor Training - Contact Response</h2>
+          <p>Dear ${result.name},</p>
+          <p>Thank you for contacting Mentor Training.</p>
+          
+          <div style="background-color: #f5f5f5; padding: 20px; margin: 20px 0;">
+            <h3>Your Original Message:</h3>
+            <p><strong>Subject:</strong> ${result.subject}</p>
+            <p>${result.message}</p>
+          </div>
+          
+          <div style="background-color: #e8f5e9; padding: 20px; margin: 20px 0;">
+            <h3 style="color: #2e7d32;">Our Response:</h3>
+            <p>${result.response}</p>
+          </div>
+          
+          <p>Best regards,<br><strong>Mentor Training Team</strong></p>
+        </div>
+      `,
+    });
+    console.log("Message Sent: ", info.messageId);
+    console.log("Preview URL: ", nodemailer.getTestMessageUrl(info));
+
     console.log("Result of update operation is: ", result);
     req.flash("success", "Contact Response Recorded.");
-    res.redirect("/contact/respond");
+    res.redirect("/admin/contact/respond");
   } catch (error) {
     console.error(error);
     const customError = new Error(

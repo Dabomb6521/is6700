@@ -131,7 +131,7 @@ exports.postSearch = async (req, res, next) => {
       spotifyUrl: track.external_urls.spotify,
     }));
 
-    const topTracks = await getTopTracksData();
+    const topTracks = await getPlaylistTracksData();
     const songRequests = await getSongRequestsData();
 
     res.render("external-api", {

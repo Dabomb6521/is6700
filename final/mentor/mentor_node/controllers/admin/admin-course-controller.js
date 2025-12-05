@@ -1,8 +1,8 @@
-const { nextTick } = require("process");
 const Course = require("../../models/course-model-mongoose");
 const Trainer = require("../../models/trainer-model-mongoose");
 const User = require("../../models/user-model-mongoose");
 const path = require("path");
+const fs = require('fs');
 
 const handleFileUpload = async (imageFile) => {
   const allowedExtensions = [".jpg", ".jpeg", ".png"];
@@ -134,6 +134,14 @@ exports.postDeleteCourse = async (req, res) => {
       { courses: req.params.courseId},
       {$pull: {courses: req.params.courseId}}
     );
+
+    // Delete image from directory
+    const imagePath = path.join(__dirname, '../../public/assets/img/', course.image);
+    fs.unlink(imagePath, (error) => {
+      if (error) {
+        console.warn("Image not found or could not be deleted:", error);
+      }
+    });
 
     await Course.findByIdAndDelete(req.params.courseId);
 

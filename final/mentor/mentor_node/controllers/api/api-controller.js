@@ -3,13 +3,6 @@ const Course = require("../../models/course-model-mongoose");
 
 exports.getToken = (req, res, next) => {
   try {
-    // const {user, passwordsMatch} = res.local;
-
-    // if (!user || !passwordsMatch) {
-    //   const error = new Error("Not Authenticated.");
-    //   error.statusCode = 401;
-    //   return next(error);
-    // }
 
     const token = jwt.sign(
       // {email: user.email, userId: user._id.toString()},
@@ -68,8 +61,6 @@ exports.verifyToken = (req, res, next) => {
 
 exports.getCourses = async (req, res, next) => {
   try {
-    const cours = await NonExistentModel.find();
-
     const courses = await Course.find()
       .populate("trainer", "name")
       .select("-registrants")

@@ -7,9 +7,7 @@ exports.getHome = async (req, res) => {
   try {
     const courses = await Course.find().limit(3).populate("trainer");
 
-    const trainers = await Trainer.find({
-      limit: 3,
-    });
+    const trainers = await Trainer.find().limit(3);
 
     res.render("index", {
       title: "Home",

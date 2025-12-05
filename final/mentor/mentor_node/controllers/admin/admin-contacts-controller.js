@@ -20,7 +20,9 @@ exports.getContacts = async (req, res, next) => {
 
 exports.getContactsWithNoResponse = async (req, res, next) => {
   try {
-    const contacts = await Contact.find({ response: null });
+    const contacts = await Contact.find({ response: null }).sort({
+      postDate: -1,
+    });
     res.locals.contacts = contacts;
     next();
   } catch (error) {
@@ -92,7 +94,7 @@ exports.postContactResponse = async (req, res, next) => {
 
     console.log("Result of update operation is: ", result);
     req.flash("success", "Contact Response Recorded.");
-    res.redirect("/admin/contact/respond");
+    res.redirect("/admin/contacts/respond");
   } catch (error) {
     console.error(error);
     const customError = new Error(

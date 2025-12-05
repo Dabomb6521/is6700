@@ -5,14 +5,15 @@ exports.getContact = (req, res) => {
 };
 
 exports.postContact = (req, res, next) => {
-  console.log("Request body is: ", req.body);
 
   Contact.create({
     name: req.body.name,
     email: req.body.email,
-    subjects: req.body.subject,
+    subject: req.body.subject,
     message: req.body.message,
     postDate: new Date(),
+    response: null,
+    responseDate: null,
   })
     .then((response) => {
       console.log("Success!", response);

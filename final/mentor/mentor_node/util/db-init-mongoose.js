@@ -90,7 +90,7 @@ const userData = [
     roles: ['user']
   },
   {
-    firstName: 'Frosty',
+    firstName: 'Admin Frosty',
     lastName: 'Snowman',
     email: 'frostythesnowman@northpole.com',
     password: 'frostyisthebest',
